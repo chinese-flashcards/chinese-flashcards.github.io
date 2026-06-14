@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#e9e0cf" />
-<title>Recall · pocket flashcards</title>
+<title>Chinese Flashcards</title>
 
 <!-- Markdown + Math (load from CDN; app degrades gracefully if offline) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
@@ -88,7 +88,6 @@
   .brand-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
   .brand h1{font-family:"Fraunces",serif; font-weight:650; font-size:2.7rem; margin:0; letter-spacing:-1px;}
   .brand h1 .dot{color:var(--clay);}
-  .brand p{margin:2px 0 0; color:var(--ink-2); font-weight:600;}
   .streak{background:var(--clay-tint); color:var(--clay); font-weight:800; font-size:.82rem;
     padding:7px 13px; border-radius:99px; white-space:nowrap;}
   .streak b{font-family:"Fraunces",serif;}
@@ -139,8 +138,7 @@
   .settings-row{display:flex; align-items:center; justify-content:space-between; gap:14px;
     background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
     padding:14px 16px; box-shadow:var(--shadow);}
-  .settings-row .lbl{font-weight:800; line-height:1.2;}
-  .settings-row .lbl small{display:block; color:var(--muted); font-weight:700; font-size:.76rem; margin-top:2px;}
+  .settings-row .lbl{font-weight:800;}
   .switch{flex:0 0 auto; width:50px; height:28px; border-radius:99px; cursor:pointer; padding:0;
     position:relative; border:1.5px solid var(--line); background:var(--bg-2);
     transition:background .18s, border-color .18s;}
@@ -260,10 +258,9 @@
     <div class="banner" id="banner" hidden></div>
     <div class="brand">
       <div class="brand-row">
-        <h1>Recall<span class="dot">.</span></h1>
+        <h1>Chinese Flashcards<span class="dot">.</span></h1>
         <span class="streak" id="streak" hidden></span>
       </div>
-      <p>pocket flashcards</p>
     </div>
 
     <div class="section-label"><span>Your decks</span></div>
@@ -280,7 +277,7 @@
 
     <div class="section-label"><span>Settings</span></div>
     <div class="settings-row">
-      <div class="lbl">Pinyin<small>Show romanization on Chinese answers</small></div>
+      <div class="lbl">Pinyin</div>
       <button class="switch" id="pinyinToggle" role="switch" aria-checked="true" aria-label="Toggle pinyin"><i></i></button>
     </div>
 
@@ -291,7 +288,7 @@
     </div>
     <input type="file" id="importFile" accept="application/json,.json" hidden />
 
-    <div class="footnote">Saved on this device · Coming later: cloud sync · Hard/Easy ratings</div>
+    <div class="footnote">Made by John Wu (2026)</div>
   </section>
 
   <!-- STUDY -->
@@ -406,11 +403,11 @@
   "use strict";
 
   const DAY = 86400000;
-  const STORAGE_KEY = "recall.v2";
+  const STORAGE_KEY = "chinese-flashcards.v2";
 
   /* ---------------- persistence (fail-safe) ---------------- */
   const canPersist = (function(){
-    try{ const k="__recall_probe__"; localStorage.setItem(k,"1"); localStorage.removeItem(k); return true; }
+    try{ const k="__chinese_flashcards_probe__"; localStorage.setItem(k,"1"); localStorage.removeItem(k); return true; }
     catch(e){ return false; }
   })();
 
@@ -778,7 +775,7 @@
     const blob = new Blob([JSON.stringify(state, null, 2)], { type:"application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url; a.download = "recall-backup-" + dayStr(Date.now()) + ".json";
+    a.href = url; a.download = "chinese-flashcards-backup-" + dayStr(Date.now()) + ".json";
     document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     toast("Backup downloaded");
   });
