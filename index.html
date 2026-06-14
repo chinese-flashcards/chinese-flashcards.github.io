@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#e9e0cf" />
+<title>Recall · pocket flashcards</title>
+
+<!-- Markdown + Math (load from CDN; app degrades gracefully if offline) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#e9e0cf; --bg-2:#e2d7c1; --surface:#f6efe1; --surface-2:#fcf8ef;
+    --ink:#382f26; --ink-2:#6c5f4e; --muted:#998a6f; --line:#d9cbb1;
+    --clay:#c1765a; --clay-tint:#eed4c8; --sage:#869a64; --sage-tint:#d8e0c3;
+    --ochre:#c79e49; --teal:#6f8d85; --mauve:#a07f8a;
+    --r:18px;
+    --shadow:0 1px 0 rgba(255,255,255,.5), 0 10px 24px -16px rgba(56,47,38,.55);
+    --hard:3px 3px 0 rgba(56,47,38,.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; font-family:"Nunito",system-ui,-apple-system,sans-serif;
+    color:var(--ink); background:var(--bg);
+    background-image:radial-gradient(rgba(56,47,38,.05) 1.1px, transparent 1.2px);
+    background-size:18px 18px; -webkit-font-smoothing:antialiased;
+    line-height:1.45; overscroll-behavior:none;
+  }
+  .app{max-width:480px; margin:0 auto; min-height:100dvh;
+    display:flex; flex-direction:column; padding:0 16px env(safe-area-inset-bottom,16px);}
+
+  /* view switching */
+  .view{display:none; flex:1; flex-direction:column;}
+  .app[data-view="home"] #home,
+  .app[data-view="study"] #study,
+  .app[data-view="editor"] #editor{display:flex;}
+
+  /* bars + buttons */
+  .topbar{display:flex; align-items:center; gap:10px; padding:18px 2px 12px;
+    position:sticky; top:0; z-index:5; background:linear-gradient(var(--bg) 70%, transparent);}
+  .topbar h2{font-family:"Fraunces",serif; font-weight:650; font-size:1.25rem; margin:0;
+    flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .icon-btn{border:1.5px solid var(--line); cursor:pointer; font:inherit; width:42px; height:42px;
+    flex:0 0 auto; border-radius:13px; background:var(--surface-2); color:var(--ink);
+    font-size:1.1rem; display:grid; place-items:center; box-shadow:var(--hard);
+    transition:transform .08s, box-shadow .08s;}
+  .icon-btn:active{transform:translate(2px,2px); box-shadow:1px 1px 0 rgba(56,47,38,.18);}
+  .btn{border:none; cursor:pointer; font:inherit; font-weight:800; border-radius:14px;
+    padding:14px 18px; color:var(--surface-2); background:var(--ink); letter-spacing:.2px;
+    box-shadow:var(--hard); transition:transform .08s, box-shadow .08s, opacity .15s;}
+  .btn:active{transform:translate(2px,2px); box-shadow:1px 1px 0 rgba(56,47,38,.18);}
+  .btn:disabled{opacity:.4; cursor:not-allowed;}
+  .btn--ghost{background:var(--surface-2); color:var(--ink); border:1.5px solid var(--line);}
+  .btn--clay{background:var(--clay);} .btn--sage{background:var(--sage);}
+  .btn--block{width:100%;}
+  .btn--danger{background:var(--surface-2); color:var(--clay); border:1.5px solid var(--clay);}
+
+  /* banner + toast */
+  .banner{background:var(--ochre); color:#3a2f12; font-weight:700; font-size:.82rem;
+    border-radius:12px; padding:10px 14px; margin:14px 2px 0;}
+  .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--surface-2); font-weight:700; padding:11px 18px;
+    border-radius:13px; box-shadow:var(--shadow); opacity:0; transition:opacity .2s, transform .2s;
+    z-index:50; pointer-events:none; max-width:88%; text-align:center;}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  .modal{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center;
+    padding:24px; background:rgba(56,47,38,.45);}
+  .modal.show{display:flex;}
+  .modal-card{background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
+    padding:22px 20px 18px; box-shadow:var(--shadow); max-width:340px; width:100%;}
+  .modal-msg{font-weight:700; color:var(--ink); margin-bottom:18px; line-height:1.4;}
+  .modal-actions{display:flex; gap:10px;}
+  .modal-actions .btn{flex:1;}
+
+  /* HOME */
+  .brand{padding:30px 4px 8px;}
+  .brand-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .brand h1{font-family:"Fraunces",serif; font-weight:650; font-size:2.7rem; margin:0; letter-spacing:-1px;}
+  .brand h1 .dot{color:var(--clay);}
+  .brand p{margin:2px 0 0; color:var(--ink-2); font-weight:600;}
+  .streak{background:var(--clay-tint); color:var(--clay); font-weight:800; font-size:.82rem;
+    padding:7px 13px; border-radius:99px; white-space:nowrap;}
+  .streak b{font-family:"Fraunces",serif;}
+
+  .section-label{display:flex; align-items:center; justify-content:space-between;
+    margin:22px 4px 12px; font-weight:800; color:var(--ink-2);
+    text-transform:uppercase; letter-spacing:1.4px; font-size:.72rem;}
+
+  .deck-list{display:flex; flex-direction:column; gap:12px;}
+  .deck{background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
+    padding:16px 16px 14px; box-shadow:var(--shadow); position:relative; overflow:hidden;}
+  .deck::before{content:""; position:absolute; left:0; top:0; bottom:0; width:7px;
+    background:var(--accent, var(--ochre)); transition:background .3s ease;}
+  .deck-head{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:4px;}
+  .deck-head h3{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .deck h3{font-family:"Fraunces",serif; font-weight:650; margin:0; font-size:1.3rem;}
+  .rev-toggle{flex:0 0 auto; width:36px; height:36px; border-radius:11px; border:1.5px solid var(--line);
+    background:var(--surface-2); color:var(--ink-2); font-size:1.05rem; cursor:pointer;
+    display:grid; place-items:center; transition:transform .08s, background .15s, color .15s, border-color .15s;}
+  .rev-toggle:active{transform:scale(.9);}
+  .rev-toggle.on{background:var(--ochre); color:#3a2f12; border-color:var(--ochre);}
+  .rev-tag{color:var(--ochre); font-weight:800;}
+  .deck .meta{color:var(--muted); font-weight:700; font-size:.85rem; margin-bottom:12px;}
+  .deck .meta .due{color:var(--clay);} .deck .meta .ok{color:var(--sage);}
+  .deck .row{display:flex; gap:10px;}
+  .deck .row .btn{flex:1; padding:11px;}
+
+  .newdeck{background:transparent; border:2px dashed var(--line); border-radius:var(--r);
+    padding:14px; color:var(--ink-2); font:inherit; font-weight:800; cursor:pointer; width:100%;
+    margin-top:12px; transition:border-color .15s, color .15s;}
+  .newdeck:hover{border-color:var(--clay); color:var(--clay);}
+  .newdeck-form{display:none; gap:10px; flex-direction:column; margin-top:12px;
+    background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
+    padding:14px; box-shadow:var(--shadow);}
+  .newdeck-form.open{display:flex;}
+
+  input,textarea{font:inherit; color:var(--ink); width:100%; background:var(--surface-2);
+    border:1.5px solid var(--line); border-radius:12px; padding:12px 14px; resize:vertical;}
+  input:focus,textarea:focus{outline:none; border-color:var(--ochre); box-shadow:0 0 0 3px rgba(199,158,73,.22);}
+  label.fld{display:block; font-weight:800; font-size:.78rem; text-transform:uppercase;
+    letter-spacing:1px; color:var(--ink-2); margin:0 2px 6px;}
+
+  .data-actions{display:flex; gap:10px; margin:22px 2px 6px;}
+  .data-actions .btn{flex:1; padding:11px; font-size:.9rem;}
+  .footnote{text-align:center; color:var(--muted); font-weight:700; font-size:.74rem; padding:14px 0 20px;}
+
+  /* STUDY */
+  .study-meta{display:flex; align-items:center; gap:8px; padding:0 4px 10px;}
+  .timer{font-family:"Fraunces",serif; font-weight:650; background:var(--surface-2);
+    border:1.5px solid var(--line); border-radius:11px; padding:6px 12px; font-variant-numeric:tabular-nums;}
+  .timer::before{content:"\25F7  ";}
+  .badge-cram{background:var(--ochre); color:#3a2f12; font-weight:800; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:1px; padding:5px 9px; border-radius:8px;}
+  .badge-rev{background:var(--teal); color:#0f201d; font-weight:800; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:1px; padding:5px 9px; border-radius:8px;}
+  .pill{font-weight:800; color:var(--ink-2); font-size:.85rem;}
+  .progress{height:8px; background:var(--bg-2); border-radius:99px; overflow:hidden;
+    margin:0 4px 18px; border:1.5px solid var(--line);}
+  .progress > i{display:block; height:100%; width:0; background:var(--sage); border-radius:99px; transition:width .35s ease;}
+
+  .stage{flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; padding-bottom:8px;}
+  .card-wrap{position:relative; perspective:1400px; touch-action:pan-y;
+    user-select:none; -webkit-user-select:none; margin:0 2px;}
+  .card{position:relative; width:100%; aspect-ratio:3/4; max-height:58vh;}
+  .card__inner{position:absolute; inset:0; transform-style:preserve-3d;
+    transition:transform .5s cubic-bezier(.5,1.4,.4,1);}
+  .card.flipped .card__inner{transform:rotateY(180deg);}
+  .face{position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    touch-action:pan-y; border-radius:24px; border:1.5px solid var(--line);
+    background:var(--surface); box-shadow:var(--shadow); padding:26px 24px; overflow:auto;
+    display:flex; flex-direction:column;}
+  .face--back{transform:rotateY(180deg); background:var(--surface-2);}
+  .face .corner{position:absolute; top:14px; right:18px; font-weight:800; font-size:.66rem;
+    letter-spacing:1.5px; text-transform:uppercase; color:var(--muted);}
+  .face--front .corner{color:var(--clay);} .face--back .corner{color:var(--sage);}
+  .face .content{margin:auto 0; font-size:1.15rem;}
+  .face--front .content{font-family:"Fraunces",serif; font-size:1.9rem; font-weight:650; line-height:1.2;}
+  .face .hint{position:absolute; bottom:14px; left:0; right:0; text-align:center;
+    color:var(--muted); font-weight:700; font-size:.78rem;}
+
+  .verdict{position:absolute; top:22px; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+    font-size:.85rem; padding:7px 12px; border-radius:11px; opacity:0; transition:opacity .1s;
+    pointer-events:none; z-index:3; border:2px solid;}
+  .verdict--again{left:18px; color:var(--clay); border-color:var(--clay); background:var(--clay-tint); transform:rotate(-8deg);}
+  .verdict--good{right:18px; color:#4d5e34; border-color:var(--sage); background:var(--sage-tint); transform:rotate(8deg);}
+
+  .controls{display:flex; gap:12px; margin:18px 2px 4px;}
+  .controls .btn{flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; padding:13px;}
+  .controls .btn small{font-weight:700; opacity:.85; font-size:.72rem;}
+  .undo-row{text-align:center; margin-top:12px; min-height:24px;}
+  .undo-row button{background:none; border:none; font:inherit; font-weight:800;
+    color:var(--ink-2); cursor:pointer; padding:6px 10px;}
+  .undo-row button:disabled{opacity:.35; cursor:default;}
+
+  .complete,.caughtup{flex:1; display:none; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; gap:6px; padding:20px;}
+  .complete.show,.caughtup.show{display:flex;}
+  .complete .big,.caughtup .big{font-family:"Fraunces",serif; font-size:2rem; font-weight:650;}
+  .caughtup .sub{color:var(--ink-2); font-weight:700; margin-bottom:14px;}
+  .caughtup .btn{max-width:300px;}
+  .complete .stats{display:flex; gap:14px; margin:14px 0 20px;}
+  .complete .stat{background:var(--surface); border:1.5px solid var(--line); border-radius:14px;
+    padding:12px 18px; box-shadow:var(--shadow);}
+  .complete .stat b{display:block; font-family:"Fraunces",serif; font-size:1.5rem;}
+  .complete .stat span{font-weight:700; color:var(--ink-2); font-size:.78rem;
+    text-transform:uppercase; letter-spacing:1px;}
+  .complete .btn{max-width:320px; width:100%;}
+
+  /* EDITOR */
+  .deck-name-input{font-family:"Fraunces",serif; font-weight:650; font-size:1.25rem;
+    background:transparent; border:1.5px solid transparent; border-radius:10px;
+    padding:6px 8px; flex:1; min-width:0;}
+  .deck-name-input:focus{background:var(--surface-2); border-color:var(--ochre);}
+  .editor-add{background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
+    padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px; margin-bottom:8px;}
+  .editor-add .form-head{font-family:"Fraunces",serif; font-weight:650; font-size:1.05rem;}
+  .editor-add .tip{color:var(--muted); font-weight:700; font-size:.78rem; margin-top:-4px;}
+  .form-actions{display:flex; gap:10px;}
+  .form-actions .btn{flex:1;}
+  .ed-label{margin:20px 4px 10px; font-weight:800; color:var(--ink-2);
+    text-transform:uppercase; letter-spacing:1.4px; font-size:.72rem;}
+  .ed-list{display:flex; flex-direction:column; gap:10px;}
+  .ed-card{display:flex; align-items:center; gap:10px; background:var(--surface);
+    border:1.5px solid var(--line); border-radius:14px; padding:12px 12px 12px 14px; box-shadow:var(--shadow);}
+  .ed-card .body{flex:1; min-width:0; overflow:hidden; cursor:pointer;}
+  .ed-card .f{font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .ed-card .b{color:var(--ink-2); font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .ed-card .status{flex:0 0 auto; font-weight:800; font-size:.68rem; text-transform:uppercase;
+    letter-spacing:.5px; color:var(--muted); background:var(--bg-2); padding:4px 8px; border-radius:8px;}
+  .ed-card .status.new{color:var(--teal);} .ed-card .status.due{color:var(--clay);}
+  .ed-card .del{flex:0 0 auto; border:none; background:var(--clay-tint); color:var(--clay);
+    width:34px; height:34px; border-radius:10px; font-size:1.1rem; cursor:pointer; font-weight:800;}
+  .empty{text-align:center; color:var(--muted); font-weight:700; padding:30px 10px;}
+  .delete-deck{margin:18px 0 22px;}
+
+  /* rendered markdown */
+  .content :is(h1,h2,h3){font-family:"Fraunces",serif; margin:.4em 0;}
+  .content p{margin:.5em 0;} .content ul,.content ol{margin:.5em 0; padding-left:1.3em;}
+  .content blockquote{margin:.6em 0; padding:.2em .9em; border-left:4px solid var(--ochre);
+    color:var(--ink-2); font-style:italic; background:rgba(199,158,73,.1); border-radius:0 8px 8px 0;}
+  .content a{color:var(--clay); font-weight:700;}
+  .content code{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    background:var(--bg-2); padding:.12em .4em; border-radius:6px; font-size:.85em;}
+  .content pre{background:#33291f; color:#f0e6d2; padding:14px 16px; border-radius:12px;
+    overflow:auto; font-size:.82rem; line-height:1.5;}
+  .content pre code{background:none; padding:0; color:inherit; font-size:1em;}
+</style>
+</head>
+<body>
+<div class="app" data-view="home" id="app">
+
+  <!-- HOME -->
+  <section class="view" id="home">
+    <div class="banner" id="banner" hidden></div>
+    <div class="brand">
+      <div class="brand-row">
+        <h1>Recall<span class="dot">.</span></h1>
+        <span class="streak" id="streak" hidden></span>
+      </div>
+      <p>pocket flashcards</p>
+    </div>
+
+    <div class="section-label"><span>Your decks</span></div>
+    <div class="deck-list" id="deckList"></div>
+
+    <button class="newdeck" id="newDeckBtn">+ New deck</button>
+    <div class="newdeck-form" id="newDeckForm">
+      <input type="text" id="newDeckName" placeholder="Deck name…" maxlength="60" />
+      <div style="display:flex; gap:10px;">
+        <button type="button" class="btn btn--ghost" id="newDeckCancel" style="flex:1;">Cancel</button>
+        <button type="button" class="btn" id="newDeckCreate" style="flex:1;">Create</button>
+      </div>
+    </div>
+
+    <div class="data-actions">
+      <button class="btn btn--ghost" id="exportBtn">Export</button>
+      <button class="btn btn--ghost" id="importBtn">Import</button>
+      <button class="btn btn--ghost" id="resetBtn">Reset</button>
+    </div>
+    <input type="file" id="importFile" accept="application/json,.json" hidden />
+
+    <div class="footnote">Saved on this device · Coming later: cloud sync · Hard/Easy ratings</div>
+  </section>
+
+  <!-- STUDY -->
+  <section class="view" id="study">
+    <div class="topbar">
+      <button class="icon-btn" id="studyBack" aria-label="Back to decks">‹</button>
+      <h2 id="studyTitle">Deck</h2>
+      <span class="badge-rev" id="revBadge" hidden>⇄ reverse</span>
+      <span class="badge-cram" id="cramBadge" hidden>cram</span>
+      <span class="timer" id="timer">0:00</span>
+    </div>
+    <div class="study-meta"><span class="pill" id="remainPill">0 to go</span></div>
+    <div class="progress"><i id="progBar"></i></div>
+
+    <div class="stage" id="stage">
+      <div class="card-wrap" id="cardWrap">
+        <span class="verdict verdict--again" id="vAgain">Review</span>
+        <span class="verdict verdict--good" id="vGood">Got it</span>
+        <div class="card" id="card">
+          <div class="card__inner">
+            <div class="face face--front">
+              <span class="corner">front</span>
+              <div class="content" id="faceFront"></div>
+              <div class="hint">tap to flip</div>
+            </div>
+            <div class="face face--back">
+              <span class="corner">back</span>
+              <div class="content" id="faceBack"></div>
+              <div class="hint">swipe ← review · got it →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn btn--clay" id="againBtn">Re-review<small>swipe left</small></button>
+        <button class="btn btn--sage" id="goodBtn">Got it<small>swipe right</small></button>
+      </div>
+      <div class="undo-row"><button id="undoBtn" disabled>↶ Undo last card</button></div>
+    </div>
+
+    <div class="caughtup" id="caughtup">
+      <div class="big">All caught up.</div>
+      <div class="sub" id="nextDue">Nothing due right now.</div>
+      <button class="btn btn--block" id="cramBtn">Cram all cards</button>
+      <button class="btn btn--ghost btn--block" id="caughtBack" style="margin-top:10px; max-width:300px;">Back to decks</button>
+    </div>
+
+    <div class="complete" id="complete">
+      <div class="big">Nicely done.</div>
+      <div style="color:var(--ink-2); font-weight:700;" id="completeSub">Session complete</div>
+      <div class="stats">
+        <div class="stat"><b id="statGood">0</b><span>passed</span></div>
+        <div class="stat"><b id="statAgain">0</b><span>re-reviews</span></div>
+        <div class="stat"><b id="statTime">0:00</b><span>time</span></div>
+      </div>
+      <button class="btn btn--block" id="restartBtn">Study again</button>
+      <button class="btn btn--ghost btn--block" id="doneBtn" style="margin-top:10px;">Back to decks</button>
+      <div class="undo-row"><button id="undoBtn2">↶ Undo last card</button></div>
+    </div>
+  </section>
+
+  <!-- EDITOR -->
+  <section class="view" id="editor">
+    <div class="topbar">
+      <button class="icon-btn" id="editorBack" aria-label="Back to decks">‹</button>
+      <input class="deck-name-input" id="deckNameInput" maxlength="60" aria-label="Deck name" />
+    </div>
+
+    <div class="editor-add" id="addForm">
+      <div class="form-head" id="formHead">New card</div>
+      <div>
+        <label class="fld" for="cardFront">Front</label>
+        <textarea id="cardFront" rows="2" placeholder="Question or term…"></textarea>
+      </div>
+      <div>
+        <label class="fld" for="cardBack">Back</label>
+        <textarea id="cardBack" rows="3" placeholder="Answer or definition…"></textarea>
+      </div>
+      <div class="tip">Markdown · math with $…$ and $$…$$ · code with ``` fences</div>
+      <div class="form-actions">
+        <button type="button" class="btn btn--ghost" id="cancelEdit" hidden>Cancel</button>
+        <button type="button" class="btn" id="addSubmit">+ Add card</button>
+      </div>
+    </div>
+
+    <div class="ed-label" id="edCount">Cards</div>
+    <div class="ed-list" id="edList"></div>
+    <button class="btn btn--danger btn--block delete-deck" id="deleteDeckBtn">Delete this deck</button>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal" id="confirmModal">
+  <div class="modal-card">
+    <div class="modal-msg" id="confirmMsg"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn--ghost" id="confirmCancel">Cancel</button>
+      <button type="button" class="btn btn--clay" id="confirmOk">Confirm</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  "use strict";
+
+  const DAY = 86400000;
+  const STORAGE_KEY = "recall.v2";
+
+  /* ---------------- persistence (fail-safe) ---------------- */
+  const canPersist = (function(){
+    try{ const k="__recall_probe__"; localStorage.setItem(k,"1"); localStorage.removeItem(k); return true; }
+    catch(e){ return false; }
+  })();
+
+  function loadState(){
+    if (!canPersist) return null;
+    try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : null; }
+    catch(e){ return null; }
+  }
+  function saveState(){
+    if (!canPersist) return;
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e){ /* quota or sandbox; ignore */ }
+  }
+
+  /* ---------------- ids + card factory ---------------- */
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+  function freshSR(){ return { ease:2.5, interval:0, reps:0, lapses:0, due:Date.now(), lastReviewed:null }; }
+  function normalizeSR(o){
+    if (typeof o.ease !== "number") o.ease = 2.5;
+    if (typeof o.interval !== "number") o.interval = 0;
+    if (typeof o.reps !== "number") o.reps = 0;
+    if (typeof o.lapses !== "number") o.lapses = 0;
+    if (typeof o.due !== "number") o.due = Date.now();
+    if (!("lastReviewed" in o)) o.lastReviewed = null;
+    return o;
+  }
+  function card(front, back){ return Object.assign({ id:uid(), source:"user", front, back }, freshSR()); }
+
+  /* ---------------- published seed (decks.json) + reconcile ---------------- */
+  // Published decks live in decks.json (fetched at boot), keyed by STABLE ids.
+  // Local state owns scheduling + any user-made decks/cards. reconcileSeed() merges
+  // published content into local state WITHOUT clobbering progress or user content.
+  let PUBLISHED = { seedVersion:0, retired:[], decks:[] };
+
+  async function loadSeed(){
+    try{
+      const res = await fetch("./decks.json", { cache:"no-cache" });
+      if (!res.ok) return { seedVersion:0, retired:[], decks:[] };
+      const data = await res.json();
+      return {
+        seedVersion: typeof data.seedVersion === "number" ? data.seedVersion : 0,
+        retired: Array.isArray(data.retired) ? data.retired.map(String) : [],
+        decks: Array.isArray(data.decks) ? data.decks : []
+      };
+    } catch(e){ return { seedVersion:0, retired:[], decks:[] }; }
+  }
+
+  function makePublishedCard(pc){
+    return Object.assign(
+      { id:uid(), source:"published", seedId:String(pc.id), seedVer:(pc.ver||1),
+        front:String(pc.front||""), back:String(pc.back||"") },
+      freshSR()
+    );
+  }
+  function makePublishedDeck(pd, deadCards){
+    return {
+      id:uid(), source:"published", seedId:String(pd.id),
+      name: pd.name || "Untitled deck", createdAt:Date.now(), lastStudied:null, reversed:false,
+      cards: (pd.cards||[]).filter(pc => !deadCards.has(String(pc.id))).map(makePublishedCard)
+    };
+  }
+
+  // Merge published decks into state: add new decks/cards, update changed card
+  // content (front/back only -- scheduling is preserved), honor user deletions
+  // (tombstones) and retired ids. Idempotent: each card is gated by seedVer.
+  function reconcileSeed(state, published){
+    state.tombstones = state.tombstones || { decks:[], cards:[] };
+    const deadDecks = new Set(state.tombstones.decks);
+    const deadCards = new Set(state.tombstones.cards);
+    const retired   = new Set((published.retired||[]).map(String));
+
+    // Remove any locally-held published deck that the manifest has retired.
+    state.decks = state.decks.filter(d => {
+      if (d.source === "published" && retired.has(String(d.seedId))){
+        if (!deadDecks.has(String(d.seedId))){ state.tombstones.decks.push(String(d.seedId)); deadDecks.add(String(d.seedId)); }
+        return false;
+      }
+      return true;
+    });
+
+    (published.decks||[]).forEach(pd => {
+      const pid = String(pd.id);
+      if (deadDecks.has(pid) || retired.has(pid)) return;     // user deleted it, or it's retired
+      let ld = state.decks.find(d => d.source === "published" && String(d.seedId) === pid);
+
+      if (!ld){                                                // brand-new published deck -> add it
+        state.decks.push(makePublishedDeck(pd, deadCards));
+        return;
+      }
+      (pd.cards||[]).forEach(pc => {                           // reconcile cards of an existing deck
+        const cid = String(pc.id);
+        if (deadCards.has(cid)) return;                        // user deleted this card -> don't resurrect
+        const lc = ld.cards.find(c => String(c.seedId) === cid);
+        if (!lc){
+          ld.cards.push(makePublishedCard(pc));                // new card -> add with a fresh schedule
+        } else if ((pc.ver||1) > (lc.seedVer||1)){
+          lc.front = String(pc.front||"");                     // content changed -> update text only
+          lc.back  = String(pc.back||"");
+          lc.seedVer = (pc.ver||1);                            // ease/interval/reps/due/rev untouched
+        }
+      });
+    });
+
+    state.seedVersion = published.seedVersion || 0;
+  }
+
+  // Record a deleted published item so reconcile won't bring it back.
+  function tombstoneDeck(seedId){
+    state.tombstones = state.tombstones || { decks:[], cards:[] };
+    if (state.tombstones.decks.indexOf(String(seedId)) === -1) state.tombstones.decks.push(String(seedId));
+  }
+  function tombstoneCard(seedId){
+    state.tombstones = state.tombstones || { decks:[], cards:[] };
+    if (state.tombstones.cards.indexOf(String(seedId)) === -1) state.tombstones.cards.push(String(seedId));
+  }
+
+  /* ---------------- normalize (load / import safety) ---------------- */
+  function normalize(s){
+    try{
+      if (!s || typeof s !== "object" || Array.isArray(s)) return null;
+      s.version = 2;
+      if (!s.stats || typeof s.stats !== "object") s.stats = {};
+      if (!s.stats.streak || typeof s.stats.streak !== "object") s.stats.streak = { count:0, lastDay:null };
+      if (typeof s.stats.streak.count !== "number") s.stats.streak.count = 0;
+      if (!("lastDay" in s.stats.streak)) s.stats.streak.lastDay = null;
+      if (typeof s.seedVersion !== "number") s.seedVersion = 0;
+      if (!s.tombstones || typeof s.tombstones !== "object") s.tombstones = { decks:[], cards:[] };
+      s.tombstones.decks = Array.isArray(s.tombstones.decks) ? s.tombstones.decks.map(String) : [];
+      s.tombstones.cards = Array.isArray(s.tombstones.cards) ? s.tombstones.cards.map(String) : [];
+      s.decks = Array.isArray(s.decks) ? s.decks.filter(d => d && typeof d === "object") : [];
+      s.decks.forEach(d => {
+        d.id = d.id || uid();
+        d.name = d.name || "Untitled deck";
+        d.createdAt = d.createdAt || Date.now();
+        if (!("lastStudied" in d)) d.lastStudied = null;
+        d.reversed = !!d.reversed;
+        d.source = (d.source === "published" && d.seedId != null) ? "published" : "user";
+        if (d.source === "published") d.seedId = String(d.seedId); else delete d.seedId;
+        d.cards = Array.isArray(d.cards) ? d.cards.filter(c => c && typeof c === "object") : [];
+        d.cards.forEach(c => {
+          c.id = c.id || uid();
+          c.front = typeof c.front === "string" ? c.front : "";
+          c.back = typeof c.back === "string" ? c.back : "";
+          normalizeSR(c);
+          if (c.rev && typeof c.rev === "object" && !Array.isArray(c.rev)) normalizeSR(c.rev);
+          else if ("rev" in c) delete c.rev;
+          c.source = (c.source === "published" && c.seedId != null) ? "published" : "user";
+          if (c.source === "published"){ c.seedId = String(c.seedId); c.seedVer = (typeof c.seedVer === "number") ? c.seedVer : 1; }
+          else { delete c.seedId; delete c.seedVer; }
+        });
+      });
+      return s;
+    } catch(e){ return null; }
+  }
+
+  /* ---------------- boot state ---------------- */
+  // `state` is assigned in boot() at the bottom, once decks.json has been fetched.
+  let state = null;
+
+  /* ---------------- DOM + helpers ---------------- */
+  const $ = id => document.getElementById(id);
+  const app = $("app");
+  let toastTimer = null;
+  function toast(msg){
+    const t = $("toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+  }
+
+  // in-app confirm (native confirm() is blocked in sandboxed previews)
+  let confirmCb = null;
+  function confirmDialog(msg, onYes, okLabel){
+    $("confirmMsg").textContent = msg;
+    $("confirmOk").textContent = okLabel || "Confirm";
+    confirmCb = onYes;
+    $("confirmModal").classList.add("show");
+  }
+  function closeConfirm(){ $("confirmModal").classList.remove("show"); confirmCb = null; }
+  $("confirmOk").addEventListener("click", () => { const cb = confirmCb; closeConfirm(); if (cb) cb(); });
+  $("confirmCancel").addEventListener("click", closeConfirm);
+  $("confirmModal").addEventListener("click", e => { if (e.target === $("confirmModal")) closeConfirm(); });
+  function showView(v){ app.dataset.view = v; window.scrollTo(0,0); }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+  }
+  function renderContent(el, text){
+    let html;
+    try{
+      if (window.marked){
+        const math = [];
+        let t = text.replace(/\$\$([\s\S]+?)\$\$/g, m => (math.push(m), "\u0000M"+(math.length-1)+"\u0000"));
+        t = t.replace(/\$([^\$\n]+?)\$/g, m => (math.push(m), "\u0000M"+(math.length-1)+"\u0000"));
+        html = marked.parse(t, { breaks:true });
+        html = html.replace(/\u0000M(\d+)\u0000/g, (_, i) => math[+i]);
+      } else { html = "<p>" + escapeHtml(text).replace(/\n/g,"<br>") + "</p>"; }
+    } catch(e){ html = "<p>" + escapeHtml(text).replace(/\n/g,"<br>") + "</p>"; }
+    el.innerHTML = html;
+    if (window.renderMathInElement){
+      try{
+        renderMathInElement(el, {
+          delimiters:[
+            {left:"$$",right:"$$",display:true},
+            {left:"$",right:"$",display:false},
+            {left:"\\[",right:"\\]",display:true},
+            {left:"\\(",right:"\\)",display:false}
+          ],
+          ignoredTags:["script","noscript","style","textarea","pre","code"], throwOnError:false
+        });
+      } catch(e){}
+    }
+  }
+
+  /* ---------------- SM-2 ---------------- */
+  // Binary mapping: "Got it" -> q=4 (ease stable), "Re-review" -> q=2 (lapse).
+  function reviewCard(c, good){
+    const now = Date.now();
+    const q = good ? 4 : 2;
+    let ef = c.ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+    if (ef < 1.3) ef = 1.3;
+    c.ease = ef;
+    if (good){
+      if (c.reps === 0) c.interval = 1;
+      else if (c.reps === 1) c.interval = 6;
+      else c.interval = Math.round(c.interval * c.ease);
+      c.reps += 1;
+    } else {
+      c.reps = 0; c.interval = 1; c.lapses = (c.lapses || 0) + 1;
+    }
+    c.lastReviewed = now;
+    c.due = now + c.interval * DAY;
+  }
+  // Direction-aware scheduling: forward SR lives on the card; reverse SR lives on card.rev.
+  function sr(c, reversed, create){
+    if (!reversed) return c;
+    if (!c.rev){
+      if (create) c.rev = freshSR();
+      else return { ease:2.5, interval:0, reps:0, lapses:0, due:Date.now(), lastReviewed:null };
+    }
+    return c.rev;
+  }
+  function isDue(c, reversed){ return (sr(c, reversed).due || 0) <= Date.now(); }
+  function dueCount(d){ return d.cards.filter(c => isDue(c, d.reversed)).length; }
+  function dueLabel(c, reversed){
+    const o = sr(c, reversed);
+    if (o.reps === 0 && !o.lastReviewed) return ["new","new"];
+    const diff = o.due - Date.now();
+    if (diff <= 0) return ["due","due"];
+    const d = Math.ceil(diff / DAY);
+    if (d <= 1){ const h = Math.ceil(diff / 3600000); return ["", h <= 1 ? "<1h" : "in "+h+"h"]; }
+    return ["", "in " + d + "d"];
+  }
+  function relFuture(ms){
+    const diff = ms - Date.now();
+    if (diff <= 0) return "now";
+    const h = Math.ceil(diff / 3600000);
+    if (h < 24) return "in " + h + (h === 1 ? " hour" : " hours");
+    const d = Math.ceil(diff / DAY);
+    return "in " + d + (d === 1 ? " day" : " days");
+  }
+  function dayStr(ms){ const d = new Date(ms); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+  function bumpStreak(){
+    const s = state.stats.streak, t = dayStr(Date.now());
+    if (s.lastDay === t) return;
+    s.count = (s.lastDay === dayStr(Date.now() - DAY)) ? s.count + 1 : 1;
+    s.lastDay = t;
+  }
+
+  // Deck urgency -> ochre saturation. Driven by average days a deck's due cards are
+  // overdue, log-scaled: nearly gray when caught up, vivid ochre when long overdue.
+  function deckUrgency(d){
+    if (!d.cards.length) return 0;
+    const now = Date.now();
+    const overdue = d.cards.filter(c => isDue(c, d.reversed)).map(c => Math.max(0, (now - sr(c, d.reversed).due) / DAY));
+    if (!overdue.length) return 0;                       // nothing due -> calm
+    const avg = overdue.reduce((a, b) => a + b, 0) / overdue.length;
+    const DMAX = 21;                                     // ~3 weeks overdue -> full saturation
+    return Math.min(1, Math.log(1 + avg) / Math.log(1 + DMAX));
+  }
+  function urgencyColor(u){
+    const s = Math.round(8 + (58 - 8) * u);              // 8% (nearly gray) -> 58% (vivid ochre)
+    return "hsl(41, " + s + "%, 52%)";
+  }
+  function urgencyTitle(d){
+    if (!d.cards.length) return "Empty deck";
+    const now = Date.now();
+    const od = d.cards.filter(c => isDue(c, d.reversed)).map(c => Math.max(0, (now - sr(c, d.reversed).due) / DAY));
+    if (!od.length) return "Caught up";
+    const avg = od.reduce((a, b) => a + b, 0) / od.length;
+    if (avg < 0.5) return "Due now";
+    return "Avg " + (avg < 1 ? "<1" : Math.round(avg)) + "d overdue";
+  }
+
+  /* ---------------- HOME ---------------- */
+  function renderHome(){
+    if (!canPersist){ $("banner").hidden = false;
+      $("banner").textContent = "Preview mode — changes won't be saved here. Open or host the file to enable saving."; }
+    const s = state.stats.streak;
+    const stk = $("streak");
+    if (s.count > 0){ stk.hidden = false; stk.innerHTML = "<b>" + s.count + "</b>-day streak"; }
+    else stk.hidden = true;
+
+    const list = $("deckList"); list.innerHTML = "";
+    if (!state.decks.length){ list.innerHTML = '<div class="empty">No decks yet. Create one below!</div>'; }
+    state.decks.forEach(d => {
+      const due = dueCount(d), total = d.cards.length;
+      let meta = total + (total === 1 ? " card" : " cards");
+      if (due > 0) meta += ' · <span class="due">' + due + ' due</span>';
+      else if (total > 0) meta += ' · <span class="ok">caught up</span>';
+      if (d.reversed) meta += ' · <span class="rev-tag">reversed</span>';
+
+      const el = document.createElement("div");
+      el.className = "deck";
+      el.style.setProperty("--accent", urgencyColor(deckUrgency(d)));
+      el.title = urgencyTitle(d);
+      el.innerHTML =
+        '<div class="deck-head"><h3></h3>' +
+          '<button class="rev-toggle' + (d.reversed ? ' on' : '') +
+            '" aria-label="Reverse front and back" title="Study back \u2192 front">\u21C4</button>' +
+        '</div>' +
+        '<div class="meta">' + meta + '</div>' +
+        '<div class="row">' +
+          '<button class="btn btn--sage study">Study</button>' +
+          '<button class="btn btn--ghost edit">Edit</button>' +
+        '</div>';
+      el.querySelector("h3").textContent = d.name;
+      el.querySelector(".rev-toggle").addEventListener("click", () => {
+        d.reversed = !d.reversed; saveState(); renderHome();
+      });
+      const studyBtn = el.querySelector(".study");
+      if (!total) studyBtn.disabled = true;
+      studyBtn.addEventListener("click", () => startSession(d.id, false));
+      el.querySelector(".edit").addEventListener("click", () => openEditor(d.id));
+      list.appendChild(el);
+    });
+  }
+
+  // new deck
+  $("newDeckBtn").addEventListener("click", () => {
+    $("newDeckForm").classList.add("open"); $("newDeckBtn").style.display = "none"; $("newDeckName").focus();
+  });
+  function closeNewDeck(){ $("newDeckForm").classList.remove("open"); $("newDeckBtn").style.display = ""; $("newDeckName").value = ""; }
+  $("newDeckCancel").addEventListener("click", closeNewDeck);
+  function createDeck(){
+    const name = $("newDeckName").value.trim(); if (!name) return;
+    const d = { id:uid(), source:"user", name, createdAt:Date.now(), lastStudied:null, cards:[] };
+    state.decks.push(d); saveState(); closeNewDeck(); renderHome(); openEditor(d.id);
+  }
+  $("newDeckCreate").addEventListener("click", createDeck);
+  $("newDeckName").addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); createDeck(); } });
+
+  // data: export / import / reset
+  $("exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type:"application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "recall-backup-" + dayStr(Date.now()) + ".json";
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    toast("Backup downloaded");
+  });
+  $("importBtn").addEventListener("click", () => $("importFile").click());
+  $("importFile").addEventListener("change", e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try{
+        const imported = normalize(JSON.parse(reader.result));
+        if (!imported) throw 0;
+        confirmDialog("Replace all current decks with the imported file?", () => {
+          state = imported; saveState(); renderHome(); showView("home");
+          toast("Imported " + state.decks.length + (state.decks.length === 1 ? " deck" : " decks"));
+        }, "Replace");
+      } catch(err){ toast("Couldn't read that file"); }
+      $("importFile").value = "";
+    };
+    reader.readAsText(file);
+  });
+  $("resetBtn").addEventListener("click", () => {
+    confirmDialog("Reset everything to the starter decks? This erases your decks and progress.", () => {
+      state = { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
+                seedVersion:0, tombstones:{ decks:[], cards:[] } };
+      reconcileSeed(state, PUBLISHED);            // re-seed from published decks (cached at boot)
+      saveState(); renderHome(); toast("Reset to starter decks");
+    }, "Reset");
+  });
+
+  /* ---------------- STUDY ---------------- */
+  let deck=null, mode="due", remaining=[], current=null, stats={good:0,again:0}, total=0;
+  let undoStack=[], busy=false, startTs=0, timerId=null, sessionReversed=false;
+
+  function drawFrom(arr){ if (!arr.length) return null; return arr.splice(Math.floor(Math.random()*arr.length), 1)[0]; }
+  function showState(which){
+    $("stage").style.display = which === "stage" ? "flex" : "none";
+    $("caughtup").classList.toggle("show", which === "caughtup");
+    $("complete").classList.toggle("show", which === "complete");
+  }
+
+  function startSession(deckId, cram){
+    deck = state.decks.find(d => d.id === deckId);
+    if (!deck || !deck.cards.length) return;
+    sessionReversed = !!deck.reversed;
+    $("studyTitle").textContent = deck.name;
+    $("revBadge").hidden = !sessionReversed;
+    showView("study");
+
+    if (!cram && dueCount(deck) === 0){    // nothing due -> caught up
+      stopTimer();
+      const next = Math.min.apply(null, deck.cards.map(c => sr(c, sessionReversed).due || 0));
+      $("nextDue").textContent = "Next review " + relFuture(next) + ".";
+      $("timer").textContent = "0:00"; $("cramBadge").hidden = true; $("remainPill").textContent = "0 to go";
+      $("progBar").style.width = "0%";
+      showState("caughtup"); return;
+    }
+
+    mode = cram ? "cram" : "due";
+    $("cramBadge").hidden = mode !== "cram";
+    remaining = cram ? deck.cards.slice() : deck.cards.filter(c => isDue(c, sessionReversed));
+    total = remaining.length; stats = { good:0, again:0 }; undoStack = [];
+    current = drawFrom(remaining);
+    showState("stage"); showCurrent(); startTimer();
+  }
+
+  function startTimer(){ startTs = Date.now(); clearInterval(timerId); tickTimer(); timerId = setInterval(tickTimer, 1000); }
+  function fmtTime(ms){ const s = Math.floor(ms/1000); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+  function tickTimer(){ $("timer").textContent = fmtTime(Date.now()-startTs); }
+  function stopTimer(){ clearInterval(timerId); timerId = null; }
+
+  function setFlip(on){ $("card").classList.toggle("flipped", on); }
+  function showCurrent(){
+    if (!current) return;
+    setFlip(false);
+    renderContent($("faceFront"), sessionReversed ? current.back : current.front);
+    renderContent($("faceBack"),  sessionReversed ? current.front : current.back);
+    $("faceFront").parentElement.scrollTop = 0; $("faceBack").parentElement.scrollTop = 0;
+    updateProgress();
+    $("undoBtn").disabled = undoStack.length === 0;
+    resetCardTransform();
+  }
+  function updateProgress(){
+    const left = remaining.length + (current ? 1 : 0);
+    $("remainPill").textContent = left + " to go";
+    const mastered = Math.max(0, total - left);
+    $("progBar").style.width = total ? (mastered/total*100) + "%" : "0%";
+  }
+
+  function snapshot(){
+    const o = current ? sr(current, sessionReversed, true) : null;
+    undoStack.push({
+      remaining: remaining.slice(), current: current, good: stats.good, again: stats.again,
+      srObj: o,
+      srPrev: o ? { ease:o.ease, interval:o.interval, reps:o.reps,
+                    lapses:o.lapses, due:o.due, lastReviewed:o.lastReviewed } : null
+    });
+  }
+  function commit(kind){
+    if (busy || !current) return;
+    const good = kind === "good";
+    snapshot();
+    if (mode === "due"){ reviewCard(sr(current, sessionReversed, true), good); saveState(); }
+    if (good) stats.good++; else { stats.again++; remaining.push(current); }
+    animateOut(good ? 1 : -1, () => {
+      current = drawFrom(remaining);
+      if (current) showCurrent(); else finishSession();
+    });
+  }
+  function undo(){
+    if (!undoStack.length) return;
+    const s = undoStack.pop();
+    if (s.srObj && s.srPrev) Object.assign(s.srObj, s.srPrev);  // revert SM-2 changes (direction-aware)
+    remaining = s.remaining; current = s.current; stats.good = s.good; stats.again = s.again;
+    if (mode === "due") saveState();
+    showState("stage");
+    if (!timerId){ startTs = Date.now(); timerId = setInterval(tickTimer, 1000); }
+    showCurrent();
+  }
+  function finishSession(){
+    stopTimer();
+    updateProgress();   // queue empty + no current card -> "0 to go" and a full bar
+    if (mode === "due"){ deck.lastStudied = Date.now(); bumpStreak(); saveState(); renderHome(); }
+    $("statGood").textContent = stats.good;
+    $("statAgain").textContent = stats.again;
+    $("statTime").textContent = $("timer").textContent;
+    $("completeSub").textContent = mode === "cram" ? "Cram session (scheduling untouched)" : "Session complete";
+    showState("complete");
+    $("undoBtn2").disabled = undoStack.length === 0;
+  }
+
+  $("studyBack").addEventListener("click", () => { stopTimer(); renderHome(); showView("home"); });
+  $("againBtn").addEventListener("click", () => commit("again"));
+  $("goodBtn").addEventListener("click", () => commit("good"));
+  $("undoBtn").addEventListener("click", undo);
+  $("undoBtn2").addEventListener("click", undo);
+  $("restartBtn").addEventListener("click", () => startSession(deck.id, mode === "cram"));
+  $("doneBtn").addEventListener("click", () => { renderHome(); showView("home"); });
+  $("cramBtn").addEventListener("click", () => startSession(deck.id, true));
+  $("caughtBack").addEventListener("click", () => { renderHome(); showView("home"); });
+
+  /* ---------------- swipe ---------------- */
+  const wrap = $("cardWrap");
+  function setCardTransform(dx){
+    $("card").style.transform = "translateX("+dx+"px) rotate("+(dx*0.045)+"deg)";
+    const t = Math.min(Math.abs(dx)/120, 1);
+    $("vGood").style.opacity = dx > 12 ? t : 0;
+    $("vAgain").style.opacity = dx < -12 ? t : 0;
+  }
+  function resetCardTransform(){
+    const c = $("card"); c.style.transition = ""; c.style.transform = "";
+    $("vGood").style.opacity = 0; $("vAgain").style.opacity = 0;
+  }
+  function animateOut(dir, cb){
+    busy = true; const c = $("card");
+    c.style.transition = "transform .26s ease, opacity .26s ease";
+    c.style.transform = "translateX("+(dir*window.innerWidth)+"px) rotate("+(dir*16)+"deg)";
+    c.style.opacity = "0";
+    setTimeout(() => {
+      c.style.transition = "none"; c.style.opacity = "1"; cb();
+      requestAnimationFrame(() => { c.style.transition = ""; }); busy = false;
+    }, 260);
+  }
+  let dragging=false, startX=0, startY=0, dx=0, dy=0, axis="", downTime=0, pid=null;
+  const THRESH = 65;
+  function onDown(e){
+    if (busy || !current || !$("stage").style.display || $("stage").style.display === "none") return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    dragging = true; axis = ""; dx = 0; dy = 0;
+    startX = e.clientX; startY = e.clientY; downTime = Date.now(); pid = e.pointerId;
+    $("card").style.transition = "none";
+  }
+  function onMove(e){
+    if (!dragging || e.pointerId !== pid) return;
+    dx = e.clientX - startX; dy = e.clientY - startY;
+    if (!axis){
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+      axis = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
+      if (axis === "h"){ try { wrap.setPointerCapture(pid); } catch(_){} }
+    }
+    if (axis === "h"){ if (e.cancelable) e.preventDefault(); setCardTransform(dx); }
+  }
+  function onUp(e){
+    if (!dragging || e.pointerId !== pid) return;
+    dragging = false;
+    const moved = Math.abs(dx), quick = Date.now() - downTime < 300;
+    try { wrap.releasePointerCapture(pid); } catch(_){}
+    pid = null;
+    if (axis === "h" && moved > THRESH){ commit(dx > 0 ? "good" : "again"); }
+    else if (axis !== "v" && moved < 10 && Math.abs(dy) < 10 && quick){
+      setFlip(!$("card").classList.contains("flipped")); resetCardTransform();
+    } else {
+      const c = $("card"); c.style.transition = "transform .25s ease"; resetCardTransform();
+      setTimeout(() => { c.style.transition = ""; }, 250);
+    }
+    dx = 0; dy = 0; axis = "";
+  }
+  wrap.addEventListener("pointerdown", onDown);
+  wrap.addEventListener("pointermove", onMove, { passive:false });
+  wrap.addEventListener("pointerup", onUp);
+  wrap.addEventListener("pointercancel", onUp);
+
+  document.addEventListener("keydown", e => {
+    if (app.dataset.view !== "study" || $("stage").style.display === "none") return;
+    if (e.key === "ArrowLeft"){ e.preventDefault(); commit("again"); }
+    else if (e.key === "ArrowRight"){ e.preventDefault(); commit("good"); }
+    else if (e.key === " " || e.key === "Enter"){ e.preventDefault(); setFlip(!$("card").classList.contains("flipped")); }
+    else if (e.key === "z" || e.key === "Backspace"){ e.preventDefault(); undo(); }
+  });
+
+  /* ---------------- EDITOR ---------------- */
+  let editDeck = null, editingId = null;
+
+  function openEditor(deckId){
+    editDeck = state.decks.find(d => d.id === deckId); if (!editDeck) return;
+    editingId = null;
+    $("deckNameInput").value = editDeck.name;
+    resetForm(); renderEditor(); showView("editor");
+  }
+  function resetForm(){
+    editingId = null;
+    $("cardFront").value = ""; $("cardBack").value = "";
+    $("formHead").textContent = "New card";
+    $("addSubmit").textContent = "+ Add card";
+    $("cancelEdit").hidden = true;
+  }
+  function renderEditor(){
+    $("edCount").textContent = editDeck.cards.length + (editDeck.cards.length === 1 ? " card" : " cards");
+    const list = $("edList"); list.innerHTML = "";
+    if (!editDeck.cards.length){ list.innerHTML = '<div class="empty">No cards yet — add your first above.</div>'; return; }
+    const oneLine = s => s.replace(/[#>*`_$\n]/g, " ").replace(/\s+/g, " ").trim();
+    editDeck.cards.forEach(c => {
+      const [cls, label] = dueLabel(c, editDeck.reversed);
+      const el = document.createElement("div"); el.className = "ed-card";
+      el.innerHTML =
+        '<span class="status ' + cls + '"></span>' +
+        '<div class="body"><div class="f"></div><div class="b"></div></div>' +
+        '<button class="del" aria-label="Delete card">×</button>';
+      el.querySelector(".status").textContent = label;
+      el.querySelector(".f").textContent = oneLine(c.front).slice(0,60) || "(empty front)";
+      el.querySelector(".b").textContent = oneLine(c.back).slice(0,80);
+      el.querySelector(".body").addEventListener("click", () => startEdit(c));
+      el.querySelector(".del").addEventListener("click", () => {
+        confirmDialog("Delete this card?", () => {
+          if (c.source === "published" && c.seedId) tombstoneCard(c.seedId);
+          editDeck.cards = editDeck.cards.filter(x => x.id !== c.id);
+          if (editingId === c.id) resetForm();
+          saveState(); renderEditor();
+        }, "Delete");
+      });
+      list.appendChild(el);
+    });
+  }
+  function startEdit(c){
+    editingId = c.id;
+    $("cardFront").value = c.front; $("cardBack").value = c.back;
+    $("formHead").textContent = "Edit card";
+    $("addSubmit").textContent = "Save changes";
+    $("cancelEdit").hidden = false;
+    $("cardFront").focus();
+    $("addForm").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+  $("cancelEdit").addEventListener("click", resetForm);
+  function submitCard(){
+    const f = $("cardFront").value.trim(), b = $("cardBack").value.trim();
+    if (!f && !b) return;
+    if (editingId){
+      const c = editDeck.cards.find(x => x.id === editingId);
+      if (c){ c.front = f; c.back = b; }     // keep scheduling state
+      toast("Card updated");
+    } else {
+      editDeck.cards.push(card(f, b)); toast("Card added");
+    }
+    resetForm(); saveState(); renderEditor(); $("cardFront").focus();
+  }
+  $("addSubmit").addEventListener("click", submitCard);
+  $("deckNameInput").addEventListener("change", () => {
+    const n = $("deckNameInput").value.trim();
+    if (n){ editDeck.name = n; saveState(); } else $("deckNameInput").value = editDeck.name;
+  });
+  $("deleteDeckBtn").addEventListener("click", () => {
+    confirmDialog('Delete the deck "' + editDeck.name + '" and all its cards?', () => {
+      if (editDeck.source === "published" && editDeck.seedId) tombstoneDeck(editDeck.seedId);
+      state.decks = state.decks.filter(d => d.id !== editDeck.id);
+      saveState(); renderHome(); showView("home"); toast("Deck deleted");
+    }, "Delete");
+  });
+  $("editorBack").addEventListener("click", () => { renderHome(); showView("home"); });
+
+  /* ---------------- boot ---------------- */
+  async function boot(){
+    PUBLISHED = await loadSeed();                 // fetch decks.json (empty seed if offline / file://)
+    state = normalize(loadState());
+    if (!state){                                  // brand-new device -> seed everything from published
+      state = { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
+                seedVersion:0, tombstones:{ decks:[], cards:[] } };
+      reconcileSeed(state, PUBLISHED);
+    } else if ((PUBLISHED.seedVersion||0) > (state.seedVersion||0)){
+      reconcileSeed(state, PUBLISHED);            // returning device -> merge in newer content
+    }
+    saveState();
+    renderHome();
+  }
+  boot().catch(e => {
+    // last resort: never leave the user on a blank screen
+    try { if (canPersist) localStorage.removeItem(STORAGE_KEY); } catch(_){}
+    state = { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
+              seedVersion:0, tombstones:{ decks:[], cards:[] } };
+    try { reconcileSeed(state, PUBLISHED); saveState(); } catch(_){}
+    try { renderHome(); } catch(_){}
+  });
+})();
+</script>
+</body>
+</html>

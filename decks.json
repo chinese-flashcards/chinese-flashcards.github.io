@@ -1,0 +1,1218 @@
+{
+  "seedVersion": 1,
+  "retired": [],
+  "decks": [
+    {
+      "id": "everyday-life-in-taipei",
+      "name": "Everyday Life in Taipei",
+      "cards": [
+        {
+          "id": "taipei-001",
+          "ver": 1,
+          "front": "Where is the nearest MRT station?",
+          "back": "最近的捷運站在哪裡？\n\n*zuìjìn de jiéyùn zhàn zài nǎlǐ?*"
+        },
+        {
+          "id": "taipei-002",
+          "ver": 1,
+          "front": "Please tap your EasyCard here.",
+          "back": "請在這裡感應悠遊卡。\n\n*qǐng zài zhèlǐ gǎnyìng yōuyóukǎ.*"
+        },
+        {
+          "id": "taipei-003",
+          "ver": 1,
+          "front": "Does this train go to Taipei Main Station?",
+          "back": "這班車有到台北車站嗎？\n\n*zhè bān chē yǒu dào Táiběi chēzhàn ma?*"
+        },
+        {
+          "id": "taipei-004",
+          "ver": 1,
+          "front": "I need to transfer at Zhongxiao Fuxing.",
+          "back": "我要在忠孝復興轉車。\n\n*wǒ yào zài Zhōngxiào Fùxīng zhuǎnchē.*"
+        },
+        {
+          "id": "taipei-005",
+          "ver": 1,
+          "front": "The MRT stops running at midnight.",
+          "back": "捷運半夜十二點收班。\n\n*jiéyùn bànyè shí'èr diǎn shōubān.*"
+        },
+        {
+          "id": "taipei-006",
+          "ver": 1,
+          "front": "Could you please move toward the back?",
+          "back": "可以麻煩往後面移動嗎？\n\n*kěyǐ máfan wǎng hòumiàn yídòng ma?*"
+        },
+        {
+          "id": "taipei-007",
+          "ver": 1,
+          "front": "I'd like to top up my EasyCard.",
+          "back": "我要儲值悠遊卡。\n\n*wǒ yào chúzhí yōuyóukǎ.*"
+        },
+        {
+          "id": "taipei-008",
+          "ver": 1,
+          "front": "Excuse me, is this seat taken?",
+          "back": "請問這個位子有人坐嗎？\n\n*qǐngwèn zhège wèizi yǒurén zuò ma?*"
+        },
+        {
+          "id": "taipei-009",
+          "ver": 1,
+          "front": "Please give up priority seats to those in need.",
+          "back": "請把博愛座讓給需要的人。\n\n*qǐng bǎ bó'àizuò ràng gěi xūyào de rén.*"
+        },
+        {
+          "id": "taipei-010",
+          "ver": 1,
+          "front": "I'll take a YouBike to the park.",
+          "back": "我要騎 YouBike 去公園。\n\n*wǒ yào qí YouBike qù gōngyuán.*"
+        },
+        {
+          "id": "taipei-011",
+          "ver": 1,
+          "front": "The scooter parking is over there.",
+          "back": "機車停車格在那邊。\n\n*jīchē tíngchēgé zài nàbiān.*"
+        },
+        {
+          "id": "taipei-012",
+          "ver": 1,
+          "front": "Watch out for scooters when you cross the street.",
+          "back": "過馬路要小心機車。\n\n*guò mǎlù yào xiǎoxīn jīchē.*"
+        },
+        {
+          "id": "taipei-013",
+          "ver": 1,
+          "front": "Can I pay my bills at the convenience store?",
+          "back": "可以在超商繳費嗎？\n\n*kěyǐ zài chāoshāng jiǎofèi ma?*"
+        },
+        {
+          "id": "taipei-014",
+          "ver": 1,
+          "front": "Could you heat this up for me, please?",
+          "back": "這個可以幫我加熱嗎？\n\n*zhège kěyǐ bāng wǒ jiārè ma?*"
+        },
+        {
+          "id": "taipei-015",
+          "ver": 1,
+          "front": "Do you have tea eggs?",
+          "back": "你們有茶葉蛋嗎？\n\n*nǐmen yǒu cháyèdàn ma?*"
+        },
+        {
+          "id": "taipei-016",
+          "ver": 1,
+          "front": "Can I get a receipt?",
+          "back": "可以給我發票嗎？\n\n*kěyǐ gěi wǒ fāpiào ma?*"
+        },
+        {
+          "id": "taipei-017",
+          "ver": 1,
+          "front": "I'm here to pick up my package.",
+          "back": "我來取貨。\n\n*wǒ lái qǔhuò.*"
+        },
+        {
+          "id": "taipei-018",
+          "ver": 1,
+          "front": "Two oden skewers, please.",
+          "back": "我要兩串關東煮。\n\n*wǒ yào liǎng chuàn guāndōngzhǔ.*"
+        },
+        {
+          "id": "taipei-019",
+          "ver": 1,
+          "front": "Is there an ATM in this store?",
+          "back": "這間店裡有提款機嗎？\n\n*zhè jiān diàn lǐ yǒu tíkuǎnjī ma?*"
+        },
+        {
+          "id": "taipei-020",
+          "ver": 1,
+          "front": "Could I have a plastic bag?",
+          "back": "可以給我一個塑膠袋嗎？\n\n*kěyǐ gěi wǒ yīge sùjiāodài ma?*"
+        },
+        {
+          "id": "taipei-021",
+          "ver": 1,
+          "front": "Where is the microwave?",
+          "back": "微波爐在哪裡？\n\n*wéibōlú zài nǎlǐ?*"
+        },
+        {
+          "id": "taipei-022",
+          "ver": 1,
+          "front": "I'd like a large hot Americano.",
+          "back": "我要一杯大杯熱美式。\n\n*wǒ yào yī bēi dà bēi rè měishì.*"
+        },
+        {
+          "id": "taipei-023",
+          "ver": 1,
+          "front": "One beef noodle soup, please.",
+          "back": "我要一碗牛肉麵。\n\n*wǒ yào yī wǎn niúròumiàn.*"
+        },
+        {
+          "id": "taipei-024",
+          "ver": 1,
+          "front": "Is this dish spicy?",
+          "back": "這道菜會辣嗎？\n\n*zhè dào cài huì là ma?*"
+        },
+        {
+          "id": "taipei-025",
+          "ver": 1,
+          "front": "I'm a vegetarian.",
+          "back": "我吃素。\n\n*wǒ chīsù.*"
+        },
+        {
+          "id": "taipei-026",
+          "ver": 1,
+          "front": "Could I have less oil and less salt?",
+          "back": "可以少油少鹽嗎？\n\n*kěyǐ shǎo yóu shǎo yán ma?*"
+        },
+        {
+          "id": "taipei-027",
+          "ver": 1,
+          "front": "For here or to go?",
+          "back": "內用還是外帶？\n\n*nèiyòng háishì wàidài?*"
+        },
+        {
+          "id": "taipei-028",
+          "ver": 1,
+          "front": "Can I have extra chili sauce?",
+          "back": "可以多給我一點辣椒醬嗎？\n\n*kěyǐ duō gěi wǒ yīdiǎn làjiāojiàng ma?*"
+        },
+        {
+          "id": "taipei-029",
+          "ver": 1,
+          "front": "The bill, please.",
+          "back": "我要買單。\n\n*wǒ yào mǎidān.*"
+        },
+        {
+          "id": "taipei-030",
+          "ver": 1,
+          "front": "Do you take EasyCard here?",
+          "back": "你們可以用悠遊卡嗎？\n\n*nǐmen kěyǐ yòng yōuyóukǎ ma?*"
+        },
+        {
+          "id": "taipei-031",
+          "ver": 1,
+          "front": "I'd like to try the stinky tofu.",
+          "back": "我想試試臭豆腐。\n\n*wǒ xiǎng shìshì chòudòufu.*"
+        },
+        {
+          "id": "taipei-032",
+          "ver": 1,
+          "front": "One bubble tea, half sugar, less ice.",
+          "back": "一杯珍珠奶茶，半糖少冰。\n\n*yī bēi zhēnzhū nǎichá, bàn táng shǎo bīng.*"
+        },
+        {
+          "id": "taipei-033",
+          "ver": 1,
+          "front": "Add extra pearls, please.",
+          "back": "幫我加珍珠，謝謝。\n\n*bāng wǒ jiā zhēnzhū, xièxie.*"
+        },
+        {
+          "id": "taipei-034",
+          "ver": 1,
+          "front": "This is delicious!",
+          "back": "這個好好吃！\n\n*zhège hǎo hàochī!*"
+        },
+        {
+          "id": "taipei-035",
+          "ver": 1,
+          "front": "Can we get a table for two?",
+          "back": "我們兩個人，有位子嗎？\n\n*wǒmen liǎng ge rén, yǒu wèizi ma?*"
+        },
+        {
+          "id": "taipei-036",
+          "ver": 1,
+          "front": "Do you have an English menu?",
+          "back": "你們有英文菜單嗎？\n\n*nǐmen yǒu Yīngwén càidān ma?*"
+        },
+        {
+          "id": "taipei-037",
+          "ver": 1,
+          "front": "I'm allergic to peanuts.",
+          "back": "我對花生過敏。\n\n*wǒ duì huāshēng guòmǐn.*"
+        },
+        {
+          "id": "taipei-038",
+          "ver": 1,
+          "front": "Please don't add cilantro.",
+          "back": "請不要加香菜。\n\n*qǐng bùyào jiā xiāngcài.*"
+        },
+        {
+          "id": "taipei-039",
+          "ver": 1,
+          "front": "What do you recommend?",
+          "back": "你推薦什麼？\n\n*nǐ tuījiàn shénme?*"
+        },
+        {
+          "id": "taipei-040",
+          "ver": 1,
+          "front": "Can I have steamed dumplings instead of fried?",
+          "back": "我要蒸餃，不要煎餃，可以嗎？\n\n*wǒ yào zhēngjiǎo, bùyào jiānjiǎo, kěyǐ ma?*"
+        },
+        {
+          "id": "taipei-041",
+          "ver": 1,
+          "front": "How much is the fried chicken cutlet?",
+          "back": "雞排多少錢？\n\n*jīpái duōshǎo qián?*"
+        },
+        {
+          "id": "taipei-042",
+          "ver": 1,
+          "front": "The night market is so crowded tonight.",
+          "back": "今晚夜市好多人。\n\n*jīnwǎn yèshì hǎoduō rén.*"
+        },
+        {
+          "id": "taipei-043",
+          "ver": 1,
+          "front": "Let's try the pepper buns.",
+          "back": "我們來吃胡椒餅。\n\n*wǒmen lái chī hújiāobǐng.*"
+        },
+        {
+          "id": "taipei-044",
+          "ver": 1,
+          "front": "Can I take a photo of this?",
+          "back": "我可以拍這個嗎？\n\n*wǒ kěyǐ pāi zhège ma?*"
+        },
+        {
+          "id": "taipei-045",
+          "ver": 1,
+          "front": "Is this freshly made?",
+          "back": "這個是現做的嗎？\n\n*zhège shì xiànzuò de ma?*"
+        },
+        {
+          "id": "taipei-046",
+          "ver": 1,
+          "front": "One mango shaved ice to share.",
+          "back": "一份芒果冰一起吃。\n\n*yī fèn mángguǒ bīng yīqǐ chī.*"
+        },
+        {
+          "id": "taipei-047",
+          "ver": 1,
+          "front": "These games look fun, let's play.",
+          "back": "這些遊戲看起來很好玩，我們來玩。\n\n*zhèxiē yóuxì kàn qǐlái hěn hǎowán, wǒmen lái wán.*"
+        },
+        {
+          "id": "taipei-048",
+          "ver": 1,
+          "front": "The grilled squid smells amazing.",
+          "back": "烤魷魚好香。\n\n*kǎo yóuyú hǎo xiāng.*"
+        },
+        {
+          "id": "taipei-049",
+          "ver": 1,
+          "front": "It's raining again, did you bring an umbrella?",
+          "back": "又下雨了，你有帶傘嗎？\n\n*yòu xiàyǔ le, nǐ yǒu dài sǎn ma?*"
+        },
+        {
+          "id": "taipei-050",
+          "ver": 1,
+          "front": "It's so humid today.",
+          "back": "今天好潮濕。\n\n*jīntiān hǎo cháoshī.*"
+        },
+        {
+          "id": "taipei-051",
+          "ver": 1,
+          "front": "There's a typhoon coming this weekend.",
+          "back": "這個週末有颱風要來。\n\n*zhège zhōumò yǒu táifēng yào lái.*"
+        },
+        {
+          "id": "taipei-052",
+          "ver": 1,
+          "front": "Will there be a typhoon day off?",
+          "back": "颱風天會放假嗎？\n\n*táifēng tiān huì fàngjià ma?*"
+        },
+        {
+          "id": "taipei-053",
+          "ver": 1,
+          "front": "The air quality is bad today.",
+          "back": "今天空氣品質很差。\n\n*jīntiān kōngqì pǐnzhì hěn chà.*"
+        },
+        {
+          "id": "taipei-054",
+          "ver": 1,
+          "front": "Summer here is hot and sticky.",
+          "back": "這裡的夏天又熱又黏。\n\n*zhèlǐ de xiàtiān yòu rè yòu nián.*"
+        },
+        {
+          "id": "taipei-055",
+          "ver": 1,
+          "front": "Don't forget your raincoat.",
+          "back": "別忘了帶雨衣。\n\n*bié wàng le dài yǔyī.*"
+        },
+        {
+          "id": "taipei-056",
+          "ver": 1,
+          "front": "The forecast says it'll clear up tomorrow.",
+          "back": "氣象說明天會放晴。\n\n*qìxiàng shuō míngtiān huì fàngqíng.*"
+        },
+        {
+          "id": "taipei-057",
+          "ver": 1,
+          "front": "I'm looking for an apartment near the MRT.",
+          "back": "我在找捷運附近的房子。\n\n*wǒ zài zhǎo jiéyùn fùjìn de fángzi.*"
+        },
+        {
+          "id": "taipei-058",
+          "ver": 1,
+          "front": "How much is the monthly rent?",
+          "back": "一個月租金多少？\n\n*yī ge yuè zūjīn duōshǎo?*"
+        },
+        {
+          "id": "taipei-059",
+          "ver": 1,
+          "front": "Are utilities included?",
+          "back": "水電費有包含嗎？\n\n*shuǐdiànfèi yǒu bāohán ma?*"
+        },
+        {
+          "id": "taipei-060",
+          "ver": 1,
+          "front": "The trash truck comes at seven.",
+          "back": "垃圾車七點來。\n\n*lèsè chē qī diǎn lái.*"
+        },
+        {
+          "id": "taipei-061",
+          "ver": 1,
+          "front": "Which bag is for recycling?",
+          "back": "哪一袋是回收的？\n\n*nǎ yī dài shì huíshōu de?*"
+        },
+        {
+          "id": "taipei-062",
+          "ver": 1,
+          "front": "The Wi-Fi isn't working again.",
+          "back": "網路又不能用了。\n\n*wǎnglù yòu bùnéng yòng le.*"
+        },
+        {
+          "id": "taipei-063",
+          "ver": 1,
+          "front": "Can you fix the air conditioner?",
+          "back": "冷氣可以幫我修嗎？\n\n*lěngqì kěyǐ bāng wǒ xiū ma?*"
+        },
+        {
+          "id": "taipei-064",
+          "ver": 1,
+          "front": "I need to do laundry today.",
+          "back": "我今天要洗衣服。\n\n*wǒ jīntiān yào xǐ yīfu.*"
+        },
+        {
+          "id": "taipei-065",
+          "ver": 1,
+          "front": "The landlord wants to raise the rent.",
+          "back": "房東想要漲房租。\n\n*fángdōng xiǎng yào zhǎng fángzū.*"
+        },
+        {
+          "id": "taipei-066",
+          "ver": 1,
+          "front": "Please take off your shoes before coming in.",
+          "back": "進來前請先脫鞋。\n\n*jìnlái qián qǐng xiān tuōxié.*"
+        },
+        {
+          "id": "taipei-067",
+          "ver": 1,
+          "front": "I'm running late for work.",
+          "back": "我上班要遲到了。\n\n*wǒ shàngbān yào chídào le.*"
+        },
+        {
+          "id": "taipei-068",
+          "ver": 1,
+          "front": "Let's grab coffee after the meeting.",
+          "back": "開完會我們去喝咖啡。\n\n*kāi wán huì wǒmen qù hē kāfēi.*"
+        },
+        {
+          "id": "taipei-069",
+          "ver": 1,
+          "front": "What time do you get off work?",
+          "back": "你幾點下班？\n\n*nǐ jǐ diǎn xiàbān?*"
+        },
+        {
+          "id": "taipei-070",
+          "ver": 1,
+          "front": "Can we reschedule to next week?",
+          "back": "可以改到下禮拜嗎？\n\n*kěyǐ gǎi dào xià lǐbài ma?*"
+        },
+        {
+          "id": "taipei-071",
+          "ver": 1,
+          "front": "Nice to meet you, here's my business card.",
+          "back": "很高興認識你，這是我的名片。\n\n*hěn gāoxìng rènshi nǐ, zhè shì wǒ de míngpiàn.*"
+        },
+        {
+          "id": "taipei-072",
+          "ver": 1,
+          "front": "Let's add each other on LINE.",
+          "back": "我們互加 LINE 吧。\n\n*wǒmen hù jiā LINE ba.*"
+        },
+        {
+          "id": "taipei-073",
+          "ver": 1,
+          "front": "I have class until five today.",
+          "back": "我今天上課到五點。\n\n*wǒ jīntiān shàngkè dào wǔ diǎn.*"
+        },
+        {
+          "id": "taipei-074",
+          "ver": 1,
+          "front": "Are you free this weekend?",
+          "back": "你這個週末有空嗎？\n\n*nǐ zhège zhōumò yǒukòng ma?*"
+        },
+        {
+          "id": "taipei-075",
+          "ver": 1,
+          "front": "Let's go hiking on Elephant Mountain.",
+          "back": "我們去爬象山吧。\n\n*wǒmen qù pá Xiàngshān ba.*"
+        },
+        {
+          "id": "taipei-076",
+          "ver": 1,
+          "front": "Thank you for your hard work today.",
+          "back": "今天辛苦了。\n\n*jīntiān xīnkǔ le.*"
+        },
+        {
+          "id": "taipei-077",
+          "ver": 1,
+          "front": "Let's split the bill.",
+          "back": "帳單我們平分吧。\n\n*zhàngdān wǒmen píngfēn ba.*"
+        },
+        {
+          "id": "taipei-078",
+          "ver": 1,
+          "front": "Cheers!",
+          "back": "乾杯！\n\n*gānbēi!*"
+        },
+        {
+          "id": "taipei-079",
+          "ver": 1,
+          "front": "How much is this?",
+          "back": "這個多少錢？\n\n*zhège duōshǎo qián?*"
+        },
+        {
+          "id": "taipei-080",
+          "ver": 1,
+          "front": "Can you give me a better price?",
+          "back": "可以算便宜一點嗎？\n\n*kěyǐ suàn piányí yīdiǎn ma?*"
+        },
+        {
+          "id": "taipei-081",
+          "ver": 1,
+          "front": "Do you accept mobile payment?",
+          "back": "可以用行動支付嗎？\n\n*kěyǐ yòng xíngdòng zhīfù ma?*"
+        },
+        {
+          "id": "taipei-082",
+          "ver": 1,
+          "front": "I'd like to return this, please.",
+          "back": "我想要退貨。\n\n*wǒ xiǎng yào tuìhuò.*"
+        },
+        {
+          "id": "taipei-083",
+          "ver": 1,
+          "front": "Where is the fitting room?",
+          "back": "試衣間在哪裡？\n\n*shìyījiān zài nǎlǐ?*"
+        },
+        {
+          "id": "taipei-084",
+          "ver": 1,
+          "front": "Do you have this in a smaller size?",
+          "back": "這個有小一點的尺寸嗎？\n\n*zhège yǒu xiǎo yīdiǎn de chǐcùn ma?*"
+        },
+        {
+          "id": "taipei-085",
+          "ver": 1,
+          "front": "I'm just looking, thanks.",
+          "back": "我只是看看，謝謝。\n\n*wǒ zhǐshì kànkan, xièxie.*"
+        },
+        {
+          "id": "taipei-086",
+          "ver": 1,
+          "front": "Where can I exchange foreign currency?",
+          "back": "哪裡可以換外幣？\n\n*nǎlǐ kěyǐ huàn wàibì?*"
+        },
+        {
+          "id": "taipei-087",
+          "ver": 1,
+          "front": "Is there a pharmacy nearby?",
+          "back": "附近有藥局嗎？\n\n*fùjìn yǒu yàojú ma?*"
+        },
+        {
+          "id": "taipei-088",
+          "ver": 1,
+          "front": "I need to buy a new umbrella.",
+          "back": "我需要買一把新雨傘。\n\n*wǒ xūyào mǎi yī bǎ xīn yǔsǎn.*"
+        },
+        {
+          "id": "taipei-089",
+          "ver": 1,
+          "front": "Excuse me, how do I get to Taipei 101?",
+          "back": "請問台北 101 要怎麼走？\n\n*qǐngwèn Táiběi 101 yào zěnme zǒu?*"
+        },
+        {
+          "id": "taipei-090",
+          "ver": 1,
+          "front": "Can you help me take a photo?",
+          "back": "可以幫我拍張照嗎？\n\n*kěyǐ bāng wǒ pāi zhāng zhào ma?*"
+        },
+        {
+          "id": "taipei-091",
+          "ver": 1,
+          "front": "I'm lost, can you help me?",
+          "back": "我迷路了，可以幫我嗎？\n\n*wǒ mílù le, kěyǐ bāng wǒ ma?*"
+        },
+        {
+          "id": "taipei-092",
+          "ver": 1,
+          "front": "Is it within walking distance?",
+          "back": "走路到得了嗎？\n\n*zǒulù dào de liǎo ma?*"
+        },
+        {
+          "id": "taipei-093",
+          "ver": 1,
+          "front": "How long does it take to get there?",
+          "back": "到那裡要多久？\n\n*dào nàlǐ yào duōjiǔ?*"
+        },
+        {
+          "id": "taipei-094",
+          "ver": 1,
+          "front": "Turn left at the next intersection.",
+          "back": "在下一個路口左轉。\n\n*zài xià yī ge lùkǒu zuǒzhuǎn.*"
+        },
+        {
+          "id": "taipei-095",
+          "ver": 1,
+          "front": "Do I line up here for the gondola?",
+          "back": "搭纜車是在這裡排隊嗎？\n\n*dā lǎnchē shì zài zhèlǐ páiduì ma?*"
+        },
+        {
+          "id": "taipei-096",
+          "ver": 1,
+          "front": "What time does the temple open?",
+          "back": "廟幾點開門？\n\n*miào jǐ diǎn kāimén?*"
+        },
+        {
+          "id": "taipei-097",
+          "ver": 1,
+          "front": "Could you speak a little slower, please?",
+          "back": "可以講慢一點嗎？\n\n*kěyǐ jiǎng màn yīdiǎn ma?*"
+        },
+        {
+          "id": "taipei-098",
+          "ver": 1,
+          "front": "I don't understand, could you say that again?",
+          "back": "我聽不懂，可以再說一次嗎？\n\n*wǒ tīng bù dǒng, kěyǐ zài shuō yī cì ma?*"
+        },
+        {
+          "id": "taipei-099",
+          "ver": 1,
+          "front": "Sorry, I only speak a little Chinese.",
+          "back": "不好意思，我只會說一點中文。\n\n*bùhǎoyìsi, wǒ zhǐ huì shuō yīdiǎn Zhōngwén.*"
+        },
+        {
+          "id": "taipei-100",
+          "ver": 1,
+          "front": "Thank you so much for your help!",
+          "back": "非常謝謝你的幫忙！\n\n*fēicháng xièxie nǐ de bāngmáng!*"
+        }
+      ]
+    },
+    {
+      "id": "everyday-interactions",
+      "name": "Everyday Interactions",
+      "cards": [
+        {
+          "id": "interactions-001",
+          "ver": 1,
+          "front": "Have you eaten yet?",
+          "back": "你吃飽了嗎？\n\n*nǐ chībǎo le ma?*"
+        },
+        {
+          "id": "interactions-002",
+          "ver": 1,
+          "front": "Mom, what's for dinner tonight?",
+          "back": "媽，今天晚餐吃什麼？\n\n*mā, jīntiān wǎncān chī shénme?*"
+        },
+        {
+          "id": "interactions-003",
+          "ver": 1,
+          "front": "Don't forget to call grandma this weekend.",
+          "back": "別忘了這個週末打電話給奶奶。\n\n*bié wàng le zhège zhōumò dǎ diànhuà gěi nǎinai.*"
+        },
+        {
+          "id": "interactions-004",
+          "ver": 1,
+          "front": "Can you help me set the table?",
+          "back": "可以幫我擺碗筷嗎？\n\n*kěyǐ bāng wǒ bǎi wǎnkuài ma?*"
+        },
+        {
+          "id": "interactions-005",
+          "ver": 1,
+          "front": "Did you do your homework yet?",
+          "back": "你功課寫了嗎？\n\n*nǐ gōngkè xiě le ma?*"
+        },
+        {
+          "id": "interactions-006",
+          "ver": 1,
+          "front": "I'll be home a little late tonight.",
+          "back": "我今天晚上會晚一點回家。\n\n*wǒ jīntiān wǎnshàng huì wǎn yīdiǎn huíjiā.*"
+        },
+        {
+          "id": "interactions-007",
+          "ver": 1,
+          "front": "Remember to take out the trash.",
+          "back": "記得要倒垃圾。\n\n*jìdé yào dào lèsè.*"
+        },
+        {
+          "id": "interactions-008",
+          "ver": 1,
+          "front": "Drive safely on your way back.",
+          "back": "回來路上開車小心。\n\n*huílái lùshàng kāichē xiǎoxīn.*"
+        },
+        {
+          "id": "interactions-009",
+          "ver": 1,
+          "front": "How was your day at school?",
+          "back": "今天在學校過得怎麼樣？\n\n*jīntiān zài xuéxiào guò de zěnmeyàng?*"
+        },
+        {
+          "id": "interactions-010",
+          "ver": 1,
+          "front": "Let me help you carry that.",
+          "back": "我幫你拿。\n\n*wǒ bāng nǐ ná.*"
+        },
+        {
+          "id": "interactions-011",
+          "ver": 1,
+          "front": "Wear more clothes, it's cold outside.",
+          "back": "多穿點衣服，外面很冷。\n\n*duō chuān diǎn yīfu, wàimiàn hěn lěng.*"
+        },
+        {
+          "id": "interactions-012",
+          "ver": 1,
+          "front": "Have you taken your medicine?",
+          "back": "你吃藥了嗎？\n\n*nǐ chī yào le ma?*"
+        },
+        {
+          "id": "interactions-013",
+          "ver": 1,
+          "front": "Let's have dinner together this Sunday.",
+          "back": "這個禮拜天我們一起吃晚餐吧。\n\n*zhège lǐbàitiān wǒmen yīqǐ chī wǎncān ba.*"
+        },
+        {
+          "id": "interactions-014",
+          "ver": 1,
+          "front": "Can you pick up the kids today?",
+          "back": "你今天可以去接小孩嗎？\n\n*nǐ jīntiān kěyǐ qù jiē xiǎohái ma?*"
+        },
+        {
+          "id": "interactions-015",
+          "ver": 1,
+          "front": "Dad's working late again.",
+          "back": "爸爸又要加班了。\n\n*bàba yòu yào jiābān le.*"
+        },
+        {
+          "id": "interactions-016",
+          "ver": 1,
+          "front": "Don't stay up too late.",
+          "back": "別太晚睡。\n\n*bié tài wǎn shuì.*"
+        },
+        {
+          "id": "interactions-017",
+          "ver": 1,
+          "front": "I miss you, when are you coming home?",
+          "back": "我想你，你什麼時候回家？\n\n*wǒ xiǎng nǐ, nǐ shénme shíhòu huíjiā?*"
+        },
+        {
+          "id": "interactions-018",
+          "ver": 1,
+          "front": "Be careful crossing the street.",
+          "back": "過馬路要小心。\n\n*guò mǎlù yào xiǎoxīn.*"
+        },
+        {
+          "id": "interactions-019",
+          "ver": 1,
+          "front": "Help your little brother with his homework.",
+          "back": "幫弟弟看一下功課。\n\n*bāng dìdi kàn yīxià gōngkè.*"
+        },
+        {
+          "id": "interactions-020",
+          "ver": 1,
+          "front": "Did you sleep well last night?",
+          "back": "你昨晚睡得好嗎？\n\n*nǐ zuówǎn shuì de hǎo ma?*"
+        },
+        {
+          "id": "interactions-021",
+          "ver": 1,
+          "front": "I'll wash the dishes tonight.",
+          "back": "今天晚上我來洗碗。\n\n*jīntiān wǎnshàng wǒ lái xǐwǎn.*"
+        },
+        {
+          "id": "interactions-022",
+          "ver": 1,
+          "front": "Let's video call grandpa.",
+          "back": "我們跟爺爺視訊吧。\n\n*wǒmen gēn yéye shìxùn ba.*"
+        },
+        {
+          "id": "interactions-023",
+          "ver": 1,
+          "front": "Happy birthday! Make a wish.",
+          "back": "生日快樂！許個願吧。\n\n*shēngrì kuàilè! xǔ ge yuàn ba.*"
+        },
+        {
+          "id": "interactions-024",
+          "ver": 1,
+          "front": "Are you feeling better today?",
+          "back": "你今天有好一點嗎？\n\n*nǐ jīntiān yǒu hǎo yīdiǎn ma?*"
+        },
+        {
+          "id": "interactions-025",
+          "ver": 1,
+          "front": "Turn off the lights when you leave.",
+          "back": "走的時候記得關燈。\n\n*zǒu de shíhòu jìdé guān dēng.*"
+        },
+        {
+          "id": "interactions-026",
+          "ver": 1,
+          "front": "We're so proud of you.",
+          "back": "我們以你為榮。\n\n*wǒmen yǐ nǐ wéi róng.*"
+        },
+        {
+          "id": "interactions-027",
+          "ver": 1,
+          "front": "Can you water the plants for me?",
+          "back": "可以幫我澆花嗎？\n\n*kěyǐ bāng wǒ jiāo huā ma?*"
+        },
+        {
+          "id": "interactions-028",
+          "ver": 1,
+          "front": "Let me know when you get home safe.",
+          "back": "到家了跟我說一聲。\n\n*dào jiā le gēn wǒ shuō yī shēng.*"
+        },
+        {
+          "id": "interactions-029",
+          "ver": 1,
+          "front": "It's time to wake up.",
+          "back": "該起床了。\n\n*gāi qǐchuáng le.*"
+        },
+        {
+          "id": "interactions-030",
+          "ver": 1,
+          "front": "Eat more vegetables.",
+          "back": "多吃點青菜。\n\n*duō chī diǎn qīngcài.*"
+        },
+        {
+          "id": "interactions-031",
+          "ver": 1,
+          "front": "Don't worry, everything will be fine.",
+          "back": "別擔心，一切都會好的。\n\n*bié dānxīn, yīqiè dōu huì hǎo de.*"
+        },
+        {
+          "id": "interactions-032",
+          "ver": 1,
+          "front": "Let's clean the house together this weekend.",
+          "back": "這個週末我們一起打掃吧。\n\n*zhège zhōumò wǒmen yīqǐ dǎsǎo ba.*"
+        },
+        {
+          "id": "interactions-033",
+          "ver": 1,
+          "front": "Can you turn down the TV a bit?",
+          "back": "電視可以小聲一點嗎？\n\n*diànshì kěyǐ xiǎoshēng yīdiǎn ma?*"
+        },
+        {
+          "id": "interactions-034",
+          "ver": 1,
+          "front": "Thanks for cooking, it was delicious.",
+          "back": "謝謝你煮飯，很好吃。\n\n*xièxie nǐ zhǔfàn, hěn hàochī.*"
+        },
+        {
+          "id": "interactions-035",
+          "ver": 1,
+          "front": "Long time no see, how have you been?",
+          "back": "好久不見，你最近好嗎？\n\n*hǎojiǔ bùjiàn, nǐ zuìjìn hǎo ma?*"
+        },
+        {
+          "id": "interactions-036",
+          "ver": 1,
+          "front": "Let's grab a meal sometime.",
+          "back": "我們找時間一起吃個飯。\n\n*wǒmen zhǎo shíjiān yīqǐ chī ge fàn.*"
+        },
+        {
+          "id": "interactions-037",
+          "ver": 1,
+          "front": "Are you free tonight?",
+          "back": "你今天晚上有空嗎？\n\n*nǐ jīntiān wǎnshàng yǒukòng ma?*"
+        },
+        {
+          "id": "interactions-038",
+          "ver": 1,
+          "front": "I'll treat you this time.",
+          "back": "這次我請你。\n\n*zhè cì wǒ qǐng nǐ.*"
+        },
+        {
+          "id": "interactions-039",
+          "ver": 1,
+          "front": "Let's split it next time.",
+          "back": "下次我們 AA 吧。\n\n*xià cì wǒmen AA ba.*"
+        },
+        {
+          "id": "interactions-040",
+          "ver": 1,
+          "front": "Do you want to come over?",
+          "back": "你要不要過來坐坐？\n\n*nǐ yào bùyào guòlái zuòzuo?*"
+        },
+        {
+          "id": "interactions-041",
+          "ver": 1,
+          "front": "I'm running a bit late, sorry.",
+          "back": "我會晚一點到，抱歉。\n\n*wǒ huì wǎn yīdiǎn dào, bàoqiàn.*"
+        },
+        {
+          "id": "interactions-042",
+          "ver": 1,
+          "front": "Save me a seat, please.",
+          "back": "幫我留個位子。\n\n*bāng wǒ liú ge wèizi.*"
+        },
+        {
+          "id": "interactions-043",
+          "ver": 1,
+          "front": "Let me know if you need anything.",
+          "back": "有需要什麼就跟我說。\n\n*yǒu xūyào shénme jiù gēn wǒ shuō.*"
+        },
+        {
+          "id": "interactions-044",
+          "ver": 1,
+          "front": "That sounds like a great idea.",
+          "back": "這個主意聽起來不錯。\n\n*zhège zhǔyì tīng qǐlái bùcuò.*"
+        },
+        {
+          "id": "interactions-045",
+          "ver": 1,
+          "front": "I'll text you the details later.",
+          "back": "我等等傳細節給你。\n\n*wǒ děngděng chuán xìjié gěi nǐ.*"
+        },
+        {
+          "id": "interactions-046",
+          "ver": 1,
+          "front": "It's okay, it's no big deal.",
+          "back": "沒關係，沒什麼大不了的。\n\n*méiguānxi, méi shénme dàbùliǎo de.*"
+        },
+        {
+          "id": "interactions-047",
+          "ver": 1,
+          "front": "Let's take a photo together.",
+          "back": "我們一起拍張照吧。\n\n*wǒmen yīqǐ pāi zhāng zhào ba.*"
+        },
+        {
+          "id": "interactions-048",
+          "ver": 1,
+          "front": "I had so much fun today.",
+          "back": "我今天玩得好開心。\n\n*wǒ jīntiān wán de hǎo kāixīn.*"
+        },
+        {
+          "id": "interactions-049",
+          "ver": 1,
+          "front": "Get home safe, text me when you arrive.",
+          "back": "路上小心，到家傳訊息給我。\n\n*lùshàng xiǎoxīn, dào jiā chuán xùnxí gěi wǒ.*"
+        },
+        {
+          "id": "interactions-050",
+          "ver": 1,
+          "front": "Happy to help anytime.",
+          "back": "隨時樂意幫忙。\n\n*suíshí lèyì bāngmáng.*"
+        },
+        {
+          "id": "interactions-051",
+          "ver": 1,
+          "front": "What movie do you want to watch?",
+          "back": "你想看什麼電影？\n\n*nǐ xiǎng kàn shénme diànyǐng?*"
+        },
+        {
+          "id": "interactions-052",
+          "ver": 1,
+          "front": "Let's meet at the MRT exit.",
+          "back": "我們在捷運出口碰面吧。\n\n*wǒmen zài jiéyùn chūkǒu pèngmiàn ba.*"
+        },
+        {
+          "id": "interactions-053",
+          "ver": 1,
+          "front": "I owe you one.",
+          "back": "我欠你一個人情。\n\n*wǒ qiàn nǐ yī ge rénqíng.*"
+        },
+        {
+          "id": "interactions-054",
+          "ver": 1,
+          "front": "Can I borrow your charger?",
+          "back": "可以借我充電器嗎？\n\n*kěyǐ jiè wǒ chōngdiànqì ma?*"
+        },
+        {
+          "id": "interactions-055",
+          "ver": 1,
+          "front": "Cheer up, things will get better.",
+          "back": "打起精神，事情會好轉的。\n\n*dǎqǐ jīngshén, shìqíng huì hǎozhuǎn de.*"
+        },
+        {
+          "id": "interactions-056",
+          "ver": 1,
+          "front": "Congratulations, that's amazing news!",
+          "back": "恭喜你，這真是太好的消息了！\n\n*gōngxǐ nǐ, zhè zhēnshì tài hǎo de xiāoxí le!*"
+        },
+        {
+          "id": "interactions-057",
+          "ver": 1,
+          "front": "Let's plan a trip together.",
+          "back": "我們一起計畫一趟旅行吧。\n\n*wǒmen yīqǐ jìhuà yī tàng lǚxíng ba.*"
+        },
+        {
+          "id": "interactions-058",
+          "ver": 1,
+          "front": "I totally agree with you.",
+          "back": "我完全同意你。\n\n*wǒ wánquán tóngyì nǐ.*"
+        },
+        {
+          "id": "interactions-059",
+          "ver": 1,
+          "front": "Sorry I missed your call.",
+          "back": "抱歉我剛剛沒接到你的電話。\n\n*bàoqiàn wǒ gānggāng méi jiē dào nǐ de diànhuà.*"
+        },
+        {
+          "id": "interactions-060",
+          "ver": 1,
+          "front": "Let's catch up soon.",
+          "back": "我們找時間敘敘舊。\n\n*wǒmen zhǎo shíjiān xùxù jiù.*"
+        },
+        {
+          "id": "interactions-061",
+          "ver": 1,
+          "front": "Thanks for always being there for me.",
+          "back": "謝謝你一直陪在我身邊。\n\n*xièxie nǐ yīzhí péi zài wǒ shēnbiān.*"
+        },
+        {
+          "id": "interactions-062",
+          "ver": 1,
+          "front": "Are you free to talk right now?",
+          "back": "你現在方便講話嗎？\n\n*nǐ xiànzài fāngbiàn jiǎnghuà ma?*"
+        },
+        {
+          "id": "interactions-063",
+          "ver": 1,
+          "front": "I'll be there in ten minutes.",
+          "back": "我十分鐘後到。\n\n*wǒ shí fēnzhōng hòu dào.*"
+        },
+        {
+          "id": "interactions-064",
+          "ver": 1,
+          "front": "Want to order a dish to share?",
+          "back": "要不要點一道菜一起分？\n\n*yào bùyào diǎn yī dào cài yīqǐ fēn?*"
+        },
+        {
+          "id": "interactions-065",
+          "ver": 1,
+          "front": "It's been too long, let's hang out.",
+          "back": "太久沒見了，我們出來聚聚吧。\n\n*tài jiǔ méi jiàn le, wǒmen chūlái jùjù ba.*"
+        },
+        {
+          "id": "interactions-066",
+          "ver": 1,
+          "front": "Can you recommend a good restaurant?",
+          "back": "你可以推薦一間好吃的餐廳嗎？\n\n*nǐ kěyǐ tuījiàn yī jiān hàochī de cāntīng ma?*"
+        },
+        {
+          "id": "interactions-067",
+          "ver": 1,
+          "front": "I'm here if you ever want to talk.",
+          "back": "你想聊聊的話，我隨時都在。\n\n*nǐ xiǎng liáoliáo dehuà, wǒ suíshí dōu zài.*"
+        },
+        {
+          "id": "interactions-068",
+          "ver": 1,
+          "front": "Take care of yourself.",
+          "back": "好好照顧自己。\n\n*hǎohǎo zhàogù zìjǐ.*"
+        },
+        {
+          "id": "interactions-069",
+          "ver": 1,
+          "front": "Good morning, did you have a good weekend?",
+          "back": "早安，週末過得好嗎？\n\n*zǎo'ān, zhōumò guò de hǎo ma?*"
+        },
+        {
+          "id": "interactions-070",
+          "ver": 1,
+          "front": "Can we talk for a minute?",
+          "back": "我們可以聊一下嗎？\n\n*wǒmen kěyǐ liáo yīxià ma?*"
+        },
+        {
+          "id": "interactions-071",
+          "ver": 1,
+          "front": "I'll send you the report by tonight.",
+          "back": "我今天晚上前把報告寄給你。\n\n*wǒ jīntiān wǎnshàng qián bǎ bàogào jì gěi nǐ.*"
+        },
+        {
+          "id": "interactions-072",
+          "ver": 1,
+          "front": "Do you have time for a quick meeting?",
+          "back": "你有時間開個短會嗎？\n\n*nǐ yǒu shíjiān kāi ge duǎn huì ma?*"
+        },
+        {
+          "id": "interactions-073",
+          "ver": 1,
+          "front": "Thanks for your help with this.",
+          "back": "謝謝你幫忙處理這件事。\n\n*xièxie nǐ bāngmáng chǔlǐ zhè jiàn shì.*"
+        },
+        {
+          "id": "interactions-074",
+          "ver": 1,
+          "front": "Could you double-check this for me?",
+          "back": "可以幫我再確認一次嗎？\n\n*kěyǐ bāng wǒ zài quèrèn yī cì ma?*"
+        },
+        {
+          "id": "interactions-075",
+          "ver": 1,
+          "front": "Let me know if you have any questions.",
+          "back": "有任何問題再跟我說。\n\n*yǒu rènhé wèntí zài gēn wǒ shuō.*"
+        },
+        {
+          "id": "interactions-076",
+          "ver": 1,
+          "front": "I'll be out of the office tomorrow.",
+          "back": "我明天不在辦公室。\n\n*wǒ míngtiān bù zài bàngōngshì.*"
+        },
+        {
+          "id": "interactions-077",
+          "ver": 1,
+          "front": "Can you cover for me this afternoon?",
+          "back": "今天下午可以幫我代班嗎？\n\n*jīntiān xiàwǔ kěyǐ bāng wǒ dàibān ma?*"
+        },
+        {
+          "id": "interactions-078",
+          "ver": 1,
+          "front": "The deadline is this Friday.",
+          "back": "截止日期是這個禮拜五。\n\n*jiézhǐ rìqí shì zhège lǐbàiwǔ.*"
+        },
+        {
+          "id": "interactions-079",
+          "ver": 1,
+          "front": "Let's schedule a meeting for next week.",
+          "back": "我們下禮拜安排個會議吧。\n\n*wǒmen xià lǐbài ānpái ge huìyì ba.*"
+        },
+        {
+          "id": "interactions-080",
+          "ver": 1,
+          "front": "I'll follow up with the client.",
+          "back": "我會跟客戶後續聯絡。\n\n*wǒ huì gēn kèhù hòuxù liánluò.*"
+        },
+        {
+          "id": "interactions-081",
+          "ver": 1,
+          "front": "Nice work on the presentation.",
+          "back": "簡報做得很好。\n\n*jiǎnbào zuò de hěn hǎo.*"
+        },
+        {
+          "id": "interactions-082",
+          "ver": 1,
+          "front": "Can you forward me that email?",
+          "back": "那封信可以轉寄給我嗎？\n\n*nà fēng xìn kěyǐ zhuǎnjì gěi wǒ ma?*"
+        },
+        {
+          "id": "interactions-083",
+          "ver": 1,
+          "front": "I'm a little behind on this.",
+          "back": "我這個進度有點落後。\n\n*wǒ zhège jìndù yǒudiǎn luòhòu.*"
+        },
+        {
+          "id": "interactions-084",
+          "ver": 1,
+          "front": "Let's grab lunch together.",
+          "back": "我們一起去吃午餐吧。\n\n*wǒmen yīqǐ qù chī wǔcān ba.*"
+        },
+        {
+          "id": "interactions-085",
+          "ver": 1,
+          "front": "Do you need a hand with anything?",
+          "back": "有什麼需要幫忙的嗎？\n\n*yǒu shénme xūyào bāngmáng de ma?*"
+        },
+        {
+          "id": "interactions-086",
+          "ver": 1,
+          "front": "I'll take care of it right away.",
+          "back": "我馬上處理。\n\n*wǒ mǎshàng chǔlǐ.*"
+        },
+        {
+          "id": "interactions-087",
+          "ver": 1,
+          "front": "Sorry for the late reply.",
+          "back": "抱歉這麼晚才回覆。\n\n*bàoqiàn zhème wǎn cái huífù.*"
+        },
+        {
+          "id": "interactions-088",
+          "ver": 1,
+          "front": "Could you explain that again?",
+          "back": "可以再解釋一次嗎？\n\n*kěyǐ zài jiěshì yī cì ma?*"
+        },
+        {
+          "id": "interactions-089",
+          "ver": 1,
+          "front": "Let's discuss this after lunch.",
+          "back": "這件事我們午餐後再討論。\n\n*zhè jiàn shì wǒmen wǔcān hòu zài tǎolùn.*"
+        },
+        {
+          "id": "interactions-090",
+          "ver": 1,
+          "front": "I think we should ask the manager.",
+          "back": "我覺得我們應該問一下經理。\n\n*wǒ juéde wǒmen yīnggāi wèn yīxià jīnglǐ.*"
+        },
+        {
+          "id": "interactions-091",
+          "ver": 1,
+          "front": "Can we push the meeting back an hour?",
+          "back": "會議可以往後延一個小時嗎？\n\n*huìyì kěyǐ wǎng hòu yán yī ge xiǎoshí ma?*"
+        },
+        {
+          "id": "interactions-092",
+          "ver": 1,
+          "front": "Great, let's move forward with this.",
+          "back": "好，那我們就這樣進行吧。\n\n*hǎo, nà wǒmen jiù zhèyàng jìnxíng ba.*"
+        },
+        {
+          "id": "interactions-093",
+          "ver": 1,
+          "front": "I appreciate your patience.",
+          "back": "謝謝你的耐心。\n\n*xièxie nǐ de nàixīn.*"
+        },
+        {
+          "id": "interactions-094",
+          "ver": 1,
+          "front": "Let's wrap up for today.",
+          "back": "今天就先到這裡吧。\n\n*jīntiān jiù xiān dào zhèlǐ ba.*"
+        },
+        {
+          "id": "interactions-095",
+          "ver": 1,
+          "front": "See you tomorrow, have a good evening.",
+          "back": "明天見，晚上愉快。\n\n*míngtiān jiàn, wǎnshàng yúkuài.*"
+        },
+        {
+          "id": "interactions-096",
+          "ver": 1,
+          "front": "Could you send me the file?",
+          "back": "可以把檔案傳給我嗎？\n\n*kěyǐ bǎ dǎng'àn chuán gěi wǒ ma?*"
+        },
+        {
+          "id": "interactions-097",
+          "ver": 1,
+          "front": "I'm not sure, let me check and get back to you.",
+          "back": "我不太確定，我查一下再回覆你。\n\n*wǒ bù tài quèdìng, wǒ chá yīxià zài huífù nǐ.*"
+        },
+        {
+          "id": "interactions-098",
+          "ver": 1,
+          "front": "Let's take a short break.",
+          "back": "我們休息一下吧。\n\n*wǒmen xiūxí yīxià ba.*"
+        },
+        {
+          "id": "interactions-099",
+          "ver": 1,
+          "front": "Welcome to the team!",
+          "back": "歡迎加入我們團隊！\n\n*huānyíng jiārù wǒmen tuánduì!*"
+        },
+        {
+          "id": "interactions-100",
+          "ver": 1,
+          "front": "Thank you all for your hard work.",
+          "back": "謝謝大家的努力。\n\n*xièxie dàjiā de nǔlì.*"
+        }
+      ]
+    }
+  ]
+}
