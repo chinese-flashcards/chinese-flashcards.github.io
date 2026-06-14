@@ -135,6 +135,21 @@
   .data-actions .btn{flex:1; padding:11px; font-size:.9rem;}
   .footnote{text-align:center; color:var(--muted); font-weight:700; font-size:.74rem; padding:14px 0 20px;}
 
+  /* settings */
+  .settings-row{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
+    padding:14px 16px; box-shadow:var(--shadow);}
+  .settings-row .lbl{font-weight:800; line-height:1.2;}
+  .settings-row .lbl small{display:block; color:var(--muted); font-weight:700; font-size:.76rem; margin-top:2px;}
+  .switch{flex:0 0 auto; width:50px; height:28px; border-radius:99px; cursor:pointer; padding:0;
+    position:relative; border:1.5px solid var(--line); background:var(--bg-2);
+    transition:background .18s, border-color .18s;}
+  .switch i{position:absolute; top:1.5px; left:2px; width:22px; height:22px; border-radius:50%;
+    background:var(--surface-2); box-shadow:var(--hard); transition:transform .18s;}
+  .switch[aria-checked="true"]{background:var(--sage); border-color:var(--sage);}
+  .switch[aria-checked="true"] i{transform:translateX(21px);}
+  .fld .opt{color:var(--muted);}
+
   /* STUDY */
   .study-meta{display:flex; align-items:center; gap:8px; padding:0 4px 10px;}
   .timer{font-family:"Fraunces",serif; font-weight:650; background:var(--surface-2);
@@ -263,6 +278,12 @@
       </div>
     </div>
 
+    <div class="section-label"><span>Settings</span></div>
+    <div class="settings-row">
+      <div class="lbl">Pinyin<small>Show romanization on Chinese answers</small></div>
+      <button class="switch" id="pinyinToggle" role="switch" aria-checked="true" aria-label="Toggle pinyin"><i></i></button>
+    </div>
+
     <div class="data-actions">
       <button class="btn btn--ghost" id="exportBtn">Export</button>
       <button class="btn btn--ghost" id="importBtn">Import</button>
@@ -349,6 +370,10 @@
         <label class="fld" for="cardBack">Back</label>
         <textarea id="cardBack" rows="3" placeholder="Answer or definition…"></textarea>
       </div>
+      <div>
+        <label class="fld" for="cardPinyin">Pinyin <span class="opt">· optional</span></label>
+        <textarea id="cardPinyin" rows="1" placeholder="Romanization — shown under the back when Pinyin is on"></textarea>
+      </div>
       <div class="tip">Markdown · math with $…$ and $$…$$ · code with ``` fences</div>
       <div class="form-actions">
         <button type="button" class="btn btn--ghost" id="cancelEdit" hidden>Cancel</button>
@@ -412,7 +437,13 @@
     if (!("lastReviewed" in o)) o.lastReviewed = null;
     return o;
   }
-  function card(front, back){ return Object.assign({ id:uid(), source:"user", front, back }, freshSR()); }
+  function card(front, back, pinyin){ return Object.assign({ id:uid(), source:"user", front, back, pinyin:pinyin||"" }, freshSR()); }
+
+  // A blank top-level state, used on first run, reset, and as a crash fallback.
+  function freshState(){
+    return { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
+             seedVersion:0, tombstones:{ decks:[], cards:[] }, settings:{ pinyin:true } };
+  }
 
   /* ---------------- published seed (decks.json) + reconcile ---------------- */
   // Published decks live in decks.json (fetched at boot), keyed by STABLE ids.
@@ -436,7 +467,7 @@
   function makePublishedCard(pc){
     return Object.assign(
       { id:uid(), source:"published", seedId:String(pc.id), seedVer:(pc.ver||1),
-        front:String(pc.front||""), back:String(pc.back||"") },
+        front:String(pc.front||""), back:String(pc.back||""), pinyin:String(pc.pinyin||"") },
       freshSR()
     );
   }
@@ -482,8 +513,9 @@
         if (!lc){
           ld.cards.push(makePublishedCard(pc));                // new card -> add with a fresh schedule
         } else if ((pc.ver||1) > (lc.seedVer||1)){
-          lc.front = String(pc.front||"");                     // content changed -> update text only
-          lc.back  = String(pc.back||"");
+          lc.front  = String(pc.front||"");                    // content changed -> update text only
+          lc.back   = String(pc.back||"");
+          lc.pinyin = String(pc.pinyin||"");
           lc.seedVer = (pc.ver||1);                            // ease/interval/reps/due/rev untouched
         }
       });
@@ -511,6 +543,9 @@
       if (!s.stats.streak || typeof s.stats.streak !== "object") s.stats.streak = { count:0, lastDay:null };
       if (typeof s.stats.streak.count !== "number") s.stats.streak.count = 0;
       if (!("lastDay" in s.stats.streak)) s.stats.streak.lastDay = null;
+      if (!s.settings || typeof s.settings !== "object" || Array.isArray(s.settings)) s.settings = {};
+      s.settings.pinyin = s.settings.pinyin !== false;     // default on
+
       if (typeof s.seedVersion !== "number") s.seedVersion = 0;
       if (!s.tombstones || typeof s.tombstones !== "object") s.tombstones = { decks:[], cards:[] };
       s.tombstones.decks = Array.isArray(s.tombstones.decks) ? s.tombstones.decks.map(String) : [];
@@ -529,6 +564,7 @@
           c.id = c.id || uid();
           c.front = typeof c.front === "string" ? c.front : "";
           c.back = typeof c.back === "string" ? c.back : "";
+          c.pinyin = typeof c.pinyin === "string" ? c.pinyin : "";
           normalizeSR(c);
           if (c.rev && typeof c.rev === "object" && !Array.isArray(c.rev)) normalizeSR(c.rev);
           else if ("rev" in c) delete c.rev;
@@ -686,6 +722,7 @@
     const stk = $("streak");
     if (s.count > 0){ stk.hidden = false; stk.innerHTML = "<b>" + s.count + "</b>-day streak"; }
     else stk.hidden = true;
+    $("pinyinToggle").setAttribute("aria-checked", state.settings.pinyin ? "true" : "false");
 
     const list = $("deckList"); list.innerHTML = "";
     if (!state.decks.length){ list.innerHTML = '<div class="empty">No decks yet. Create one below!</div>'; }
@@ -762,10 +799,14 @@
     };
     reader.readAsText(file);
   });
+  $("pinyinToggle").addEventListener("click", () => {
+    state.settings.pinyin = !state.settings.pinyin;
+    $("pinyinToggle").setAttribute("aria-checked", state.settings.pinyin ? "true" : "false");
+    saveState();
+  });
   $("resetBtn").addEventListener("click", () => {
     confirmDialog("Reset everything to the starter decks? This erases your decks and progress.", () => {
-      state = { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
-                seedVersion:0, tombstones:{ decks:[], cards:[] } };
+      state = freshState();
       reconcileSeed(state, PUBLISHED);            // re-seed from published decks (cached at boot)
       saveState(); renderHome(); toast("Reset to starter decks");
     }, "Reset");
@@ -813,11 +854,15 @@
   function stopTimer(){ clearInterval(timerId); timerId = null; }
 
   function setFlip(on){ $("card").classList.toggle("flipped", on); }
+  // Pinyin rides with the `back` (the Chinese), re-glued as an italic line only when enabled.
+  function backWithPinyin(c){
+    return (state.settings.pinyin && c.pinyin) ? c.back + "\n\n*" + c.pinyin + "*" : c.back;
+  }
   function showCurrent(){
     if (!current) return;
     setFlip(false);
-    renderContent($("faceFront"), sessionReversed ? current.back : current.front);
-    renderContent($("faceBack"),  sessionReversed ? current.front : current.back);
+    renderContent($("faceFront"), sessionReversed ? backWithPinyin(current) : current.front);
+    renderContent($("faceBack"),  sessionReversed ? current.front : backWithPinyin(current));
     $("faceFront").parentElement.scrollTop = 0; $("faceBack").parentElement.scrollTop = 0;
     updateProgress();
     $("undoBtn").disabled = undoStack.length === 0;
@@ -962,7 +1007,7 @@
   }
   function resetForm(){
     editingId = null;
-    $("cardFront").value = ""; $("cardBack").value = "";
+    $("cardFront").value = ""; $("cardBack").value = ""; $("cardPinyin").value = "";
     $("formHead").textContent = "New card";
     $("addSubmit").textContent = "+ Add card";
     $("cancelEdit").hidden = true;
@@ -996,7 +1041,7 @@
   }
   function startEdit(c){
     editingId = c.id;
-    $("cardFront").value = c.front; $("cardBack").value = c.back;
+    $("cardFront").value = c.front; $("cardBack").value = c.back; $("cardPinyin").value = c.pinyin || "";
     $("formHead").textContent = "Edit card";
     $("addSubmit").textContent = "Save changes";
     $("cancelEdit").hidden = false;
@@ -1005,14 +1050,14 @@
   }
   $("cancelEdit").addEventListener("click", resetForm);
   function submitCard(){
-    const f = $("cardFront").value.trim(), b = $("cardBack").value.trim();
+    const f = $("cardFront").value.trim(), b = $("cardBack").value.trim(), py = $("cardPinyin").value.trim();
     if (!f && !b) return;
     if (editingId){
       const c = editDeck.cards.find(x => x.id === editingId);
-      if (c){ c.front = f; c.back = b; }     // keep scheduling state
+      if (c){ c.front = f; c.back = b; c.pinyin = py; }     // keep scheduling state
       toast("Card updated");
     } else {
-      editDeck.cards.push(card(f, b)); toast("Card added");
+      editDeck.cards.push(card(f, b, py)); toast("Card added");
     }
     resetForm(); saveState(); renderEditor(); $("cardFront").focus();
   }
@@ -1035,8 +1080,7 @@
     PUBLISHED = await loadSeed();                 // fetch decks.json (empty seed if offline / file://)
     state = normalize(loadState());
     if (!state){                                  // brand-new device -> seed everything from published
-      state = { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
-                seedVersion:0, tombstones:{ decks:[], cards:[] } };
+      state = freshState();
       reconcileSeed(state, PUBLISHED);
     } else if ((PUBLISHED.seedVersion||0) > (state.seedVersion||0)){
       reconcileSeed(state, PUBLISHED);            // returning device -> merge in newer content
@@ -1047,8 +1091,7 @@
   boot().catch(e => {
     // last resort: never leave the user on a blank screen
     try { if (canPersist) localStorage.removeItem(STORAGE_KEY); } catch(_){}
-    state = { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
-              seedVersion:0, tombstones:{ decks:[], cards:[] } };
+    state = freshState();
     try { reconcileSeed(state, PUBLISHED); saveState(); } catch(_){}
     try { renderHome(); } catch(_){}
   });
