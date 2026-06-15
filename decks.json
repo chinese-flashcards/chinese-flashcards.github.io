@@ -1,5 +1,5 @@
 {
-  "seedVersion": 3,
+  "seedVersion": 4,
   "retired": [],
   "decks": [
     {
@@ -1411,6 +1411,82 @@
           "front": "Thank you all for your hard work.",
           "back": "謝謝大家的努力。",
           "pinyin": "xièxie dàjiā de nǔlì."
+        }
+      ]
+    },
+    {
+      "id": "taiwan-food",
+      "name": "Taiwan Food",
+      "cards": [
+        {
+          "id": "taiwan-food-001",
+          "ver": 1,
+          "front": "I'd like a bowl of braised pork rice.",
+          "back": "我要一碗滷肉飯。",
+          "pinyin": "wǒ yào yī wǎn lǔròufàn."
+        },
+        {
+          "id": "taiwan-food-002",
+          "ver": 1,
+          "front": "Do you have savory soy milk?",
+          "back": "你們有鹹豆漿嗎？",
+          "pinyin": "nǐmen yǒu xiándòujiāng ma?"
+        },
+        {
+          "id": "taiwan-food-003",
+          "ver": 1,
+          "front": "One scallion pancake with egg, please.",
+          "back": "請給我一份蔥油餅加蛋。",
+          "pinyin": "qǐng gěi wǒ yī fèn cōngyóubǐng jiā dàn."
+        },
+        {
+          "id": "taiwan-food-004",
+          "ver": 1,
+          "front": "I'd like a bowl of tofu pudding.",
+          "back": "我要一碗豆花。",
+          "pinyin": "wǒ yào yī wǎn dòuhuā."
+        },
+        {
+          "id": "taiwan-food-005",
+          "ver": 1,
+          "front": "This shaved ice comes with taro balls.",
+          "back": "這碗剉冰有芋圓。",
+          "pinyin": "zhè wǎn cuòbīng yǒu yùyuán."
+        },
+        {
+          "id": "taiwan-food-006",
+          "ver": 1,
+          "front": "Let's order a plate of three-cup chicken.",
+          "back": "我們點一盤三杯雞吧。",
+          "pinyin": "wǒmen diǎn yī pán sānbēijī ba."
+        },
+        {
+          "id": "taiwan-food-007",
+          "ver": 1,
+          "front": "I want a cup of winter melon tea.",
+          "back": "我要一杯冬瓜茶。",
+          "pinyin": "wǒ yào yī bēi dōngguāchá."
+        },
+        {
+          "id": "taiwan-food-008",
+          "ver": 1,
+          "front": "This is my first time trying pig's blood cake.",
+          "back": "這是我第一次吃豬血糕。",
+          "pinyin": "zhè shì wǒ dì yī cì chī zhūxiěgāo."
+        },
+        {
+          "id": "taiwan-food-009",
+          "ver": 1,
+          "front": "The pepper buns here are very popular.",
+          "back": "這裡的胡椒餅很受歡迎。",
+          "pinyin": "zhèlǐ de hújiāobǐng hěn shòu huānyíng."
+        },
+        {
+          "id": "taiwan-food-010",
+          "ver": 1,
+          "front": "I want one rice ball.",
+          "back": "我要一個飯糰。",
+          "pinyin": "wǒ yào yī ge fàntuán."
         }
       ]
     }
