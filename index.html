@@ -218,7 +218,6 @@
   .editor-add{background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r);
     padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px; margin-bottom:8px;}
   .editor-add .form-head{font-family:"Fraunces",serif; font-weight:650; font-size:1.05rem;}
-  .editor-add .tip{color:var(--muted); font-weight:700; font-size:.78rem; margin-top:-4px;}
   .form-actions{display:flex; gap:10px;}
   .form-actions .btn{flex:1;}
   .ed-label{margin:20px 4px 10px; font-weight:800; color:var(--ink-2);
@@ -288,7 +287,7 @@
     </div>
     <input type="file" id="importFile" accept="application/json,.json" hidden />
 
-    <div class="footnote">Made by John Wu (2026)</div>
+    <div class="footnote">Designed by John Wu. Coded by Claude Opus 4.8.</div>
   </section>
 
   <!-- STUDY -->
@@ -361,17 +360,16 @@
       <div class="form-head" id="formHead">New card</div>
       <div>
         <label class="fld" for="cardFront">Front</label>
-        <textarea id="cardFront" rows="2" placeholder="Question or term…"></textarea>
+        <textarea id="cardFront" rows="2" placeholder="English phrase"></textarea>
       </div>
       <div>
         <label class="fld" for="cardBack">Back</label>
-        <textarea id="cardBack" rows="3" placeholder="Answer or definition…"></textarea>
+        <textarea id="cardBack" rows="3" placeholder="Chinese phrase"></textarea>
       </div>
       <div>
         <label class="fld" for="cardPinyin">Pinyin <span class="opt">· optional</span></label>
-        <textarea id="cardPinyin" rows="1" placeholder="Romanization — shown under the back when Pinyin is on"></textarea>
+        <textarea id="cardPinyin" rows="1" placeholder="Romanization"></textarea>
       </div>
-      <div class="tip">Markdown · math with $…$ and $$…$$ · code with ``` fences</div>
       <div class="form-actions">
         <button type="button" class="btn btn--ghost" id="cancelEdit" hidden>Cancel</button>
         <button type="button" class="btn" id="addSubmit">+ Add card</button>
