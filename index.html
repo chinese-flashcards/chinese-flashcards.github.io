@@ -469,7 +469,8 @@
   function makePublishedDeck(pd, deadCards){
     return {
       id:uid(), source:"published", seedId:String(pd.id),
-      name: pd.name || "Untitled deck", createdAt:Date.now(), lastStudied:null, reversed:false,
+      name: pd.name || "Untitled deck", seedName: pd.name || "Untitled deck",
+      createdAt:Date.now(), lastStudied:null, reversed:false,
       cards: (pd.cards||[]).filter(pc => !deadCards.has(String(pc.id))).map(makePublishedCard)
     };
   }
@@ -501,6 +502,9 @@
         state.decks.push(makePublishedDeck(pd, deadCards));
         return;
       }
+      if (ld.seedName == null) ld.seedName = ld.name;          // back-compat for pre-seedName decks
+      if (ld.name === ld.seedName) ld.name = pd.name || ld.name; // renamed upstream, untouched locally -> adopt
+      ld.seedName = pd.name || ld.seedName;                    // track the new published baseline
       (pd.cards||[]).forEach(pc => {                           // reconcile cards of an existing deck
         const cid = String(pc.id);
         if (deadCards.has(cid)) return;                        // user deleted this card -> don't resurrect
@@ -553,7 +557,8 @@
         if (!("lastStudied" in d)) d.lastStudied = null;
         d.reversed = !!d.reversed;
         d.source = (d.source === "published" && d.seedId != null) ? "published" : "user";
-        if (d.source === "published") d.seedId = String(d.seedId); else delete d.seedId;
+        if (d.source === "published"){ d.seedId = String(d.seedId); d.seedName = typeof d.seedName === "string" ? d.seedName : d.name; }
+        else { delete d.seedId; delete d.seedName; }
         d.cards = Array.isArray(d.cards) ? d.cards.filter(c => c && typeof c === "object") : [];
         d.cards.forEach(c => {
           c.id = c.id || uid();
