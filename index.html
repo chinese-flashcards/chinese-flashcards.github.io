@@ -26,13 +26,28 @@
     --r:18px;
     --shadow:0 1px 0 rgba(255,255,255,.5), 0 10px 24px -16px rgba(56,47,38,.55);
     --hard:3px 3px 0 rgba(56,47,38,.18);
+    --dot:rgba(56,47,38,.05);
+    --code-bg:#33291f; --code-ink:#f0e6d2;
+  }
+  /* Warm dark — espresso/charcoal-brown ground, warm cream ink, accents
+     kept in the same family (terracotta/sage/ochre) but lifted for contrast.
+     Same low-saturation, solarized-leaning feel as the light theme at night. */
+  :root[data-theme="dark"]{
+    --bg:#211c16; --bg-2:#2a241c; --surface:#2e271e; --surface-2:#362e23;
+    --ink:#ece3d2; --ink-2:#c3b49b; --muted:#8c7d66; --line:#463d2f;
+    --clay:#d4876b; --clay-tint:#4a3328; --sage:#9aac7a; --sage-tint:#39432a;
+    --ochre:#d4b264; --teal:#82a39a; --mauve:#b594a0;
+    --shadow:0 1px 0 rgba(255,255,255,.04), 0 12px 26px -16px rgba(0,0,0,.7);
+    --hard:3px 3px 0 rgba(0,0,0,.32);
+    --dot:rgba(236,227,210,.045);
+    --code-bg:#181410; --code-ink:#ece3d2;
   }
   *{box-sizing:border-box;}
   html,body{height:100%;}
   body{
     margin:0; font-family:"Nunito",system-ui,-apple-system,sans-serif;
     color:var(--ink); background:var(--bg);
-    background-image:radial-gradient(rgba(56,47,38,.05) 1.1px, transparent 1.2px);
+    background-image:radial-gradient(var(--dot) 1.1px, transparent 1.2px);
     background-size:18px 18px; -webkit-font-smoothing:antialiased;
     line-height:1.45; overscroll-behavior:none;
   }
@@ -186,7 +201,7 @@
     font-size:.85rem; padding:7px 12px; border-radius:11px; opacity:0; transition:opacity .1s;
     pointer-events:none; z-index:3; border:2px solid;}
   .verdict--again{left:18px; color:var(--clay); border-color:var(--clay); background:var(--clay-tint); transform:rotate(-8deg);}
-  .verdict--good{right:18px; color:#4d5e34; border-color:var(--sage); background:var(--sage-tint); transform:rotate(8deg);}
+  .verdict--good{right:18px; color:var(--sage); border-color:var(--sage); background:var(--sage-tint); transform:rotate(8deg);}
 
   .controls{display:flex; gap:12px; margin:18px 2px 4px;}
   .controls .btn{flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; padding:13px;}
@@ -244,7 +259,7 @@
   .content a{color:var(--clay); font-weight:700;}
   .content code{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
     background:var(--bg-2); padding:.12em .4em; border-radius:6px; font-size:.85em;}
-  .content pre{background:#33291f; color:#f0e6d2; padding:14px 16px; border-radius:12px;
+  .content pre{background:var(--code-bg); color:var(--code-ink); padding:14px 16px; border-radius:12px;
     overflow:auto; font-size:.82rem; line-height:1.5;}
   .content pre code{background:none; padding:0; color:inherit; font-size:1em;}
 </style>
@@ -278,6 +293,10 @@
     <div class="settings-row">
       <div class="lbl">Pinyin</div>
       <button class="switch" id="pinyinToggle" role="switch" aria-checked="true" aria-label="Toggle pinyin"><i></i></button>
+    </div>
+    <div class="settings-row" style="margin-top:10px;">
+      <div class="lbl">Dark mode</div>
+      <button class="switch" id="darkToggle" role="switch" aria-checked="false" aria-label="Toggle dark mode"><i></i></button>
     </div>
 
     <div class="data-actions">
@@ -437,7 +456,14 @@
   // A blank top-level state, used on first run, reset, and as a crash fallback.
   function freshState(){
     return { version:2, decks:[], stats:{ streak:{count:0,lastDay:null} },
-             seedVersion:0, tombstones:{ decks:[], cards:[] }, settings:{ pinyin:true } };
+             seedVersion:0, tombstones:{ decks:[], cards:[] },
+             settings:{ pinyin:true, theme:systemTheme() } };
+  }
+
+  // Default theme follows the OS preference until the user picks one explicitly.
+  function systemTheme(){
+    try{ return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+    catch(e){ return "light"; }
   }
 
   /* ---------------- published seed (decks.json) + reconcile ---------------- */
@@ -544,6 +570,9 @@
       if (!("lastDay" in s.stats.streak)) s.stats.streak.lastDay = null;
       if (!s.settings || typeof s.settings !== "object" || Array.isArray(s.settings)) s.settings = {};
       s.settings.pinyin = s.settings.pinyin !== false;     // default on
+      s.settings.theme = s.settings.theme === "dark" ? "dark"     // explicit dark
+                       : s.settings.theme === "light" ? "light"   // explicit light
+                       : systemTheme();                           // unset -> follow OS
 
       if (typeof s.seedVersion !== "number") s.seedVersion = 0;
       if (!s.tombstones || typeof s.tombstones !== "object") s.tombstones = { decks:[], cards:[] };
@@ -584,6 +613,18 @@
   /* ---------------- DOM + helpers ---------------- */
   const $ = id => document.getElementById(id);
   const app = $("app");
+
+  // Theme: flips the [data-theme] on <html> (CSS vars do the rest) and keeps the
+  // browser chrome's theme-color in sync. Safe to call before `state` exists.
+  const THEME_COLORS = { light:"#e9e0cf", dark:"#211c16" };
+  function applyTheme(theme){
+    const t = theme === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = t;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", THEME_COLORS[t]);
+    const tog = $("darkToggle");
+    if (tog) tog.setAttribute("aria-checked", t === "dark" ? "true" : "false");
+  }
   let toastTimer = null;
   function toast(msg){
     const t = $("toast"); t.textContent = msg; t.classList.add("show");
@@ -791,7 +832,7 @@
         const imported = normalize(JSON.parse(reader.result));
         if (!imported) throw 0;
         confirmDialog("Replace all current decks with the imported file?", () => {
-          state = imported; saveState(); renderHome(); showView("home");
+          state = imported; applyTheme(state.settings.theme); saveState(); renderHome(); showView("home");
           toast("Imported " + state.decks.length + (state.decks.length === 1 ? " deck" : " decks"));
         }, "Replace");
       } catch(err){ toast("Couldn't read that file"); }
@@ -804,11 +845,16 @@
     $("pinyinToggle").setAttribute("aria-checked", state.settings.pinyin ? "true" : "false");
     saveState();
   });
+  $("darkToggle").addEventListener("click", () => {
+    state.settings.theme = state.settings.theme === "dark" ? "light" : "dark";
+    applyTheme(state.settings.theme);
+    saveState();
+  });
   $("resetBtn").addEventListener("click", () => {
     confirmDialog("Reset everything to the starter decks? This erases your decks and progress.", () => {
       state = freshState();
       reconcileSeed(state, PUBLISHED);            // re-seed from published decks (cached at boot)
-      saveState(); renderHome(); toast("Reset to starter decks");
+      applyTheme(state.settings.theme); saveState(); renderHome(); toast("Reset to starter decks");
     }, "Reset");
   });
 
@@ -1077,6 +1123,11 @@
 
   /* ---------------- boot ---------------- */
   async function boot(){
+    // Apply the saved theme immediately (before the async seed fetch) to avoid
+    // a flash of the light theme on load.
+    const saved = loadState();
+    applyTheme((saved && saved.settings && saved.settings.theme) || systemTheme());
+
     PUBLISHED = await loadSeed();                 // fetch decks.json (empty seed if offline / file://)
     state = normalize(loadState());
     if (!state){                                  // brand-new device -> seed everything from published
@@ -1085,6 +1136,7 @@
     } else if ((PUBLISHED.seedVersion||0) > (state.seedVersion||0)){
       reconcileSeed(state, PUBLISHED);            // returning device -> merge in newer content
     }
+    applyTheme(state.settings.theme);
     saveState();
     renderHome();
   }
