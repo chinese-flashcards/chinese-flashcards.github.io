@@ -1,5 +1,5 @@
 {
-  "seedVersion": 4,
+  "seedVersion": 5,
   "retired": [],
   "decks": [
     {
@@ -1487,6 +1487,270 @@
           "front": "I want one rice ball.",
           "back": "我要一個飯糰。",
           "pinyin": "wǒ yào yī ge fàntuán."
+        }
+      ]
+    },
+    {
+      "id": "everyday-idioms",
+      "name": "Everyday Idioms",
+      "cards": [
+        {
+          "id": "everyday-idioms-001",
+          "ver": 1,
+          "front": "How was the movie? It was so-so.",
+          "back": "電影怎麼樣？馬馬虎虎啦。",
+          "pinyin": "diànyǐng zěnmeyàng? mǎmǎhǔhǔ la."
+        },
+        {
+          "id": "everyday-idioms-002",
+          "ver": 1,
+          "front": "Excuse me, can I ask you something?",
+          "back": "不好意思，可以問你一下嗎？",
+          "pinyin": "bùhǎoyìsi, kěyǐ wèn nǐ yíxià ma?"
+        },
+        {
+          "id": "everyday-idioms-003",
+          "ver": 1,
+          "front": "Where do you want to eat? Anywhere's fine.",
+          "back": "你想吃什麼？隨便都可以。",
+          "pinyin": "nǐ xiǎng chī shénme? suíbiàn dōu kěyǐ."
+        },
+        {
+          "id": "everyday-idioms-004",
+          "ver": 1,
+          "front": "It's raining, nothing we can do—let's just stay home.",
+          "back": "下雨了，沒辦法，我們就待在家吧。",
+          "pinyin": "xià yǔ le, méi bànfǎ, wǒmen jiù dāi zài jiā ba."
+        },
+        {
+          "id": "everyday-idioms-005",
+          "ver": 1,
+          "front": "Are you almost done? More or less.",
+          "back": "你快好了嗎？差不多了。",
+          "pinyin": "nǐ kuài hǎo le ma? chàbùduō le."
+        },
+        {
+          "id": "everyday-idioms-006",
+          "ver": 1,
+          "front": "Are you tired? It's not too bad.",
+          "back": "你會累嗎？還好啦。",
+          "pinyin": "nǐ huì lèi ma? háihǎo la."
+        },
+        {
+          "id": "everyday-idioms-007",
+          "ver": 1,
+          "front": "Sorry I'm late. It's fine, no worries.",
+          "back": "抱歉我遲到了。沒關係，不要緊。",
+          "pinyin": "bàoqiàn wǒ chídào le. méi guānxi, bú yàojǐn."
+        },
+        {
+          "id": "everyday-idioms-008",
+          "ver": 1,
+          "front": "You've got an exam tomorrow—hang in there!",
+          "back": "你明天要考試，加油！",
+          "pinyin": "nǐ míngtiān yào kǎoshì, jiāyóu!"
+        },
+        {
+          "id": "everyday-idioms-009",
+          "ver": 1,
+          "front": "Come on, help me out just this once.",
+          "back": "拜託，就幫我這一次嘛。",
+          "pinyin": "bàituō, jiù bāng wǒ zhè yí cì ma."
+        },
+        {
+          "id": "everyday-idioms-010",
+          "ver": 1,
+          "front": "The bus already left—forget it, let's walk.",
+          "back": "公車已經走了，算了，我們用走的吧。",
+          "pinyin": "gōngchē yǐjīng zǒu le, suàn le, wǒmen yòng zǒu de ba."
+        },
+        {
+          "id": "everyday-idioms-011",
+          "ver": 1,
+          "front": "Will you come this weekend? It depends.",
+          "back": "你這週末會來嗎？看情況。",
+          "pinyin": "nǐ zhè zhōumò huì lái ma? kàn qíngkuàng."
+        },
+        {
+          "id": "everyday-idioms-012",
+          "ver": 1,
+          "front": "Hurry up, or we won't make it in time.",
+          "back": "快一點，不然就來不及了。",
+          "pinyin": "kuài yìdiǎn, bùrán jiù láibùjí le."
+        },
+        {
+          "id": "everyday-idioms-013",
+          "ver": 1,
+          "front": "Can you finish it by tomorrow? No problem.",
+          "back": "你明天前能做完嗎？沒問題。",
+          "pinyin": "nǐ míngtiān qián néng zuòwán ma? méi wèntí."
+        },
+        {
+          "id": "everyday-idioms-014",
+          "ver": 1,
+          "front": "He quit his job? Seriously?",
+          "back": "他辭職了？真的假的？",
+          "pinyin": "tā cízhí le? zhēn de jiǎ de?"
+        },
+        {
+          "id": "everyday-idioms-015",
+          "ver": 1,
+          "front": "Is it always this crowded? Not necessarily.",
+          "back": "這裡都這麼擠嗎？不一定。",
+          "pinyin": "zhèlǐ dōu zhème jǐ ma? bù yídìng."
+        },
+        {
+          "id": "everyday-idioms-016",
+          "ver": 1,
+          "front": "Take your time, there's no rush.",
+          "back": "慢慢來，不用急。",
+          "pinyin": "mànmàn lái, búyòng jí."
+        },
+        {
+          "id": "everyday-idioms-017",
+          "ver": 1,
+          "front": "Whatever, it's up to you.",
+          "back": "都可以，看你啊。",
+          "pinyin": "dōu kěyǐ, kàn nǐ a."
+        },
+        {
+          "id": "everyday-idioms-018",
+          "ver": 1,
+          "front": "It is what it is, just go with the flow.",
+          "back": "順其自然就好。",
+          "pinyin": "shùn qí zìrán jiù hǎo."
+        }
+      ]
+    },
+    {
+      "id": "reacting-and-feelings",
+      "name": "Reacting & Feelings",
+      "cards": [
+        {
+          "id": "reacting-001",
+          "ver": 1,
+          "front": "He suddenly got angry for no reason at all—so baffling.",
+          "back": "他突然莫名其妙地生氣了。",
+          "pinyin": "tā túrán mòmíngqímiào de shēngqì le."
+        },
+        {
+          "id": "reacting-002",
+          "ver": 1,
+          "front": "It's so hot today, I really can't stand it.",
+          "back": "今天好熱，我真的受不了。",
+          "pinyin": "jīntiān hǎo rè, wǒ zhēn de shòubùliǎo."
+        },
+        {
+          "id": "reacting-003",
+          "ver": 1,
+          "front": "When I saw the bill, I was completely dumbfounded.",
+          "back": "看到帳單的時候，我整個傻眼。",
+          "pinyin": "kàndào zhàngdān de shíhòu, wǒ zhěnggè shǎyǎn."
+        },
+        {
+          "id": "reacting-004",
+          "ver": 1,
+          "front": "He was an hour late and didn't even apologize—I'm speechless.",
+          "back": "他遲到一小時還不道歉，我真的很無言。",
+          "pinyin": "tā chídào yì xiǎoshí hái bú dàoqiàn, wǒ zhēn de hěn wúyán."
+        },
+        {
+          "id": "reacting-005",
+          "ver": 1,
+          "front": "You scared me to death, don't sneak up like that!",
+          "back": "你嚇死我了，不要這樣偷偷靠近！",
+          "pinyin": "nǐ xià sǐ wǒ le, búyào zhèyàng tōutōu kàojìn!"
+        },
+        {
+          "id": "reacting-006",
+          "ver": 1,
+          "front": "The discount was so good that I was really tempted.",
+          "back": "折扣太好了，我超心動的。",
+          "pinyin": "zhékòu tài hǎo le, wǒ chāo xīndòng de."
+        },
+        {
+          "id": "reacting-007",
+          "ver": 1,
+          "front": "They cancelled the train with no notice—that's outrageous.",
+          "back": "他們沒通知就取消火車，超扯的。",
+          "pinyin": "tāmen méi tōngzhī jiù qǔxiāo huǒchē, chāo chě de."
+        },
+        {
+          "id": "reacting-008",
+          "ver": 1,
+          "front": "The mosquitoes tonight are so annoying.",
+          "back": "今晚的蚊子煩死了。",
+          "pinyin": "jīnwǎn de wénzi fán sǐ le."
+        },
+        {
+          "id": "reacting-009",
+          "ver": 1,
+          "front": "After working all day, I'm completely exhausted.",
+          "back": "工作一整天，我累死了。",
+          "pinyin": "gōngzuò yì zhěng tiān, wǒ lèi sǐ le."
+        },
+        {
+          "id": "reacting-010",
+          "ver": 1,
+          "front": "Charging that much for a coffee is over the top.",
+          "back": "一杯咖啡賣這麼貴，太誇張了。",
+          "pinyin": "yì bēi kāfēi mài zhème guì, tài kuāzhāng le."
+        },
+        {
+          "id": "reacting-011",
+          "ver": 1,
+          "front": "I'm reluctant to throw away these old photos.",
+          "back": "這些舊照片我捨不得丟。",
+          "pinyin": "zhèxiē jiù zhàopiàn wǒ shěbùdé diū."
+        },
+        {
+          "id": "reacting-012",
+          "ver": 1,
+          "front": "I can't believe we won—it feels like a dream.",
+          "back": "我不敢相信我們贏了，像做夢一樣。",
+          "pinyin": "wǒ bùgǎn xiāngxìn wǒmen yíng le, xiàng zuòmèng yíyàng."
+        },
+        {
+          "id": "reacting-013",
+          "ver": 1,
+          "front": "When I heard everyone was safe, I breathed a sigh of relief.",
+          "back": "聽到大家都平安，我鬆了一口氣。",
+          "pinyin": "tīngdào dàjiā dōu píng'ān, wǒ sōng le yì kǒu qì."
+        },
+        {
+          "id": "reacting-014",
+          "ver": 1,
+          "front": "Being stuck in traffic for two hours got me really pissed off.",
+          "back": "塞車塞了兩個小時，我超火大。",
+          "pinyin": "sāichē sāi le liǎng ge xiǎoshí, wǒ chāo huǒdà."
+        },
+        {
+          "id": "reacting-015",
+          "ver": 1,
+          "front": "The show sold out—what a shame.",
+          "back": "表演的票賣完了，好可惜。",
+          "pinyin": "biǎoyǎn de piào màiwán le, hǎo kěxí."
+        },
+        {
+          "id": "reacting-016",
+          "ver": 1,
+          "front": "I'm so touched, thank you all so much.",
+          "back": "我好感動，真的很謝謝大家。",
+          "pinyin": "wǒ hǎo gǎndòng, zhēn de hěn xièxie dàjiā."
+        },
+        {
+          "id": "reacting-017",
+          "ver": 1,
+          "front": "That horror movie was terrifying, my heart is still pounding.",
+          "back": "那部恐怖片好可怕，我心臟還在跳。",
+          "pinyin": "nà bù kǒngbùpiàn hǎo kěpà, wǒ xīnzàng hái zài tiào."
+        },
+        {
+          "id": "reacting-018",
+          "ver": 1,
+          "front": "Hearing that good news made my whole day.",
+          "back": "聽到這個好消息，我一整天心情都很好。",
+          "pinyin": "tīngdào zhège hǎo xiāoxi, wǒ yì zhěng tiān xīnqíng dōu hěn hǎo."
         }
       ]
     }
