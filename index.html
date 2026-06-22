@@ -132,6 +132,25 @@
   .deck .row{display:flex; gap:10px;}
   .deck .row .btn{flex:1; padding:11px;}
 
+  /* reorder mode */
+  .section-label .reorder-btn{border:1.5px solid var(--line); background:var(--surface-2);
+    color:var(--ink-2); font:inherit; font-weight:800; text-transform:uppercase;
+    letter-spacing:1px; font-size:.68rem; padding:5px 11px; border-radius:9px; cursor:pointer;
+    transition:transform .08s, background .15s, color .15s, border-color .15s;}
+  .section-label .reorder-btn:active{transform:scale(.94);}
+  .section-label .reorder-btn.on{background:var(--sage); color:#0f201d; border-color:var(--sage);}
+  .deck-reorder{display:flex; align-items:center; gap:14px; background:var(--surface);
+    border:1.5px solid var(--line); border-radius:14px; padding:16px 16px; box-shadow:var(--shadow);
+    touch-action:none; user-select:none; -webkit-user-select:none;}
+  .deck-reorder.dragging{box-shadow:0 14px 30px -12px rgba(56,47,38,.6); border-color:var(--sage); opacity:.97;}
+  .deck-reorder .drag-handle{flex:0 0 auto; color:var(--muted); font-size:1.25rem; line-height:1;
+    cursor:grab; letter-spacing:1px;}
+  .deck-reorder.dragging .drag-handle{cursor:grabbing;}
+  .deck-reorder .nm{flex:1; min-width:0; font-family:"Fraunces",serif; font-weight:650; font-size:1.15rem;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .deck-reorder .cnt{flex:0 0 auto; color:var(--muted); font-weight:700; font-size:.82rem;}
+  .deck-reorder-placeholder{border:2px dashed var(--line); border-radius:14px; background:var(--dot);}
+
   .newdeck{background:transparent; border:2px dashed var(--line); border-radius:var(--r);
     padding:14px; color:var(--ink-2); font:inherit; font-weight:800; cursor:pointer; width:100%;
     margin-top:12px; transition:border-color .15s, color .15s;}
@@ -279,7 +298,9 @@
       </div>
     </div>
 
-    <div class="section-label"><span>Your decks</span></div>
+    <div class="section-label"><span>Your decks</span>
+      <button class="reorder-btn" id="reorderBtn" hidden>Reorder</button>
+    </div>
     <div class="deck-list" id="deckList"></div>
 
     <button class="newdeck" id="newDeckBtn">+ New deck</button>
@@ -758,6 +779,7 @@
   }
 
   /* ---------------- HOME ---------------- */
+  let reorderMode = false;
   function renderHome(){
     if (!canPersist){ $("banner").hidden = false;
       $("banner").textContent = "Preview mode — changes won't be saved here. Open or host the file to enable saving."; }
@@ -767,7 +789,18 @@
     else stk.hidden = true;
     $("pinyinToggle").setAttribute("aria-checked", state.settings.pinyin ? "true" : "false");
 
+    // Reorder affordance only makes sense with 2+ decks; drop out of reorder mode
+    // automatically if the deck count falls below that.
+    const canReorder = state.decks.length > 1;
+    const rb = $("reorderBtn");
+    rb.hidden = !canReorder;
+    if (!canReorder) reorderMode = false;
+    rb.classList.toggle("on", reorderMode);
+    rb.textContent = reorderMode ? "Done" : "Reorder";
+    $("newDeckBtn").style.display = reorderMode ? "none" : "";
+
     const list = $("deckList"); list.innerHTML = "";
+    if (reorderMode){ renderReorderList(list); return; }
     if (!state.decks.length){ list.innerHTML = '<div class="empty">No decks yet. Create one below!</div>'; }
     state.decks.forEach(d => {
       const due = dueCount(d), total = d.cards.length;
@@ -801,6 +834,85 @@
       list.appendChild(el);
     });
   }
+
+  /* ---------------- reorder decks (pointer drag) ---------------- */
+  // The deck order IS state.decks' array order, which saveState() already persists --
+  // so reordering just rewrites the array and saves; no storage-schema change needed.
+  let drag = null;
+
+  function renderReorderList(list){
+    state.decks.forEach(d => {
+      const el = document.createElement("div");
+      el.className = "deck-reorder";
+      el.dataset.id = d.id;
+      el.innerHTML = '<span class="drag-handle" aria-hidden="true">⠿</span>' +
+                     '<span class="nm"></span><span class="cnt"></span>';
+      el.querySelector(".nm").textContent = d.name;
+      el.querySelector(".cnt").textContent = d.cards.length + (d.cards.length === 1 ? " card" : " cards");
+      el.addEventListener("pointerdown", e => startDrag(e, el));
+      list.appendChild(el);
+    });
+  }
+
+  function startDrag(e, el){
+    if (drag || (e.pointerType === "mouse" && e.button !== 0)) return;
+    e.preventDefault();
+    const list = el.parentNode;
+    const rect = el.getBoundingClientRect();
+    const placeholder = document.createElement("div");
+    placeholder.className = "deck-reorder-placeholder";
+    placeholder.style.height = rect.height + "px";
+    list.insertBefore(placeholder, el);
+    // Lift the row out of flow so reordering the placeholder never shifts its coords.
+    el.style.position = "fixed";
+    el.style.left = rect.left + "px";
+    el.style.top = rect.top + "px";
+    el.style.width = rect.width + "px";
+    el.style.zIndex = "1000";
+    el.classList.add("dragging");
+    drag = { el, placeholder, list, pid: e.pointerId, offsetY: e.clientY - rect.top };
+    try { el.setPointerCapture(e.pointerId); } catch(_){}
+    el.addEventListener("pointermove", onDragMove);
+    el.addEventListener("pointerup", endDrag);
+    el.addEventListener("pointercancel", endDrag);
+  }
+
+  function onDragMove(e){
+    if (!drag || e.pointerId !== drag.pid) return;
+    e.preventDefault();
+    drag.el.style.top = (e.clientY - drag.offsetY) + "px";
+    // Slot the placeholder before the first real row whose midpoint is below the pointer.
+    const rows = Array.from(drag.list.children).filter(c => c !== drag.el && c !== drag.placeholder);
+    let target = null;
+    for (const row of rows){
+      const r = row.getBoundingClientRect();
+      if (e.clientY < r.top + r.height / 2){ target = row; break; }
+    }
+    drag.list.insertBefore(drag.placeholder, target);   // target null -> appended to end
+  }
+
+  function endDrag(e){
+    if (!drag || e.pointerId !== drag.pid) return;
+    const { el, placeholder, list } = drag;
+    el.removeEventListener("pointermove", onDragMove);
+    el.removeEventListener("pointerup", endDrag);
+    el.removeEventListener("pointercancel", endDrag);
+    el.style.position = el.style.left = el.style.top = el.style.width = el.style.zIndex = "";
+    el.classList.remove("dragging");
+    list.insertBefore(el, placeholder);
+    placeholder.remove();
+    drag = null;
+    // Rebuild the deck array from the new DOM order and persist it.
+    const order = Array.from(list.children).map(c => c.dataset.id);
+    const byId = new Map(state.decks.map(d => [d.id, d]));
+    const next = order.map(id => byId.get(id)).filter(Boolean);
+    if (next.length === state.decks.length){ state.decks = next; saveState(); }
+  }
+
+  $("reorderBtn").addEventListener("click", () => {
+    reorderMode = !reorderMode;
+    renderHome();
+  });
 
   // new deck
   $("newDeckBtn").addEventListener("click", () => {
@@ -874,6 +986,7 @@
   function startSession(deckId, cram){
     deck = state.decks.find(d => d.id === deckId);
     if (!deck || !deck.cards.length) return;
+    reorderMode = false;
     sessionReversed = !!deck.reversed;
     $("studyTitle").textContent = deck.name;
     $("revBadge").hidden = !sessionReversed;
@@ -1049,6 +1162,7 @@
 
   function openEditor(deckId){
     editDeck = state.decks.find(d => d.id === deckId); if (!editDeck) return;
+    reorderMode = false;
     editingId = null;
     $("deckNameInput").value = editDeck.name;
     resetForm(); renderEditor(); showView("editor");
