@@ -870,30 +870,56 @@
     el.style.width = rect.width + "px";
     el.style.zIndex = "1000";
     el.classList.add("dragging");
-    drag = { el, placeholder, list, pid: e.pointerId, offsetY: e.clientY - rect.top };
+    drag = { el, placeholder, list, pid: e.pointerId, offsetY: e.clientY - rect.top, clientY: e.clientY };
     try { el.setPointerCapture(e.pointerId); } catch(_){}
     el.addEventListener("pointermove", onDragMove);
     el.addEventListener("pointerup", endDrag);
     el.addEventListener("pointercancel", endDrag);
+    drag.raf = requestAnimationFrame(autoScroll);       // continuous edge-scroll while held
+  }
+
+  // Pin the floating row under the pointer and slot the placeholder before the
+  // first real row whose midpoint sits below it. Driven by the last pointer Y,
+  // so it stays correct whether the pointer moved or the page auto-scrolled.
+  function positionDrag(){
+    drag.el.style.top = (drag.clientY - drag.offsetY) + "px";
+    const rows = Array.from(drag.list.children).filter(c => c !== drag.el && c !== drag.placeholder);
+    let target = null;
+    for (const row of rows){
+      const r = row.getBoundingClientRect();
+      if (drag.clientY < r.top + r.height / 2){ target = row; break; }
+    }
+    drag.list.insertBefore(drag.placeholder, target);   // target null -> appended to end
+  }
+
+  // Scroll the page when the pointer nears the top/bottom edge, ramping speed
+  // with proximity. Re-slots the placeholder after any scroll since rows shift.
+  const EDGE = 64, MAX_SCROLL = 14;
+  function autoScroll(){
+    if (!drag) return;
+    const y = drag.clientY, h = window.innerHeight;
+    let v = 0;
+    if (y < EDGE) v = -MAX_SCROLL * (1 - y / EDGE);
+    else if (y > h - EDGE) v = MAX_SCROLL * (1 - (h - y) / EDGE);
+    if (v){
+      const before = window.scrollY;
+      window.scrollBy(0, v);
+      if (window.scrollY !== before) positionDrag();
+    }
+    drag.raf = requestAnimationFrame(autoScroll);
   }
 
   function onDragMove(e){
     if (!drag || e.pointerId !== drag.pid) return;
     e.preventDefault();
-    drag.el.style.top = (e.clientY - drag.offsetY) + "px";
-    // Slot the placeholder before the first real row whose midpoint is below the pointer.
-    const rows = Array.from(drag.list.children).filter(c => c !== drag.el && c !== drag.placeholder);
-    let target = null;
-    for (const row of rows){
-      const r = row.getBoundingClientRect();
-      if (e.clientY < r.top + r.height / 2){ target = row; break; }
-    }
-    drag.list.insertBefore(drag.placeholder, target);   // target null -> appended to end
+    drag.clientY = e.clientY;
+    positionDrag();
   }
 
   function endDrag(e){
     if (!drag || e.pointerId !== drag.pid) return;
     const { el, placeholder, list } = drag;
+    cancelAnimationFrame(drag.raf);
     el.removeEventListener("pointermove", onDragMove);
     el.removeEventListener("pointerup", endDrag);
     el.removeEventListener("pointercancel", endDrag);
