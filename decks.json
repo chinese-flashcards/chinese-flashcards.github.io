@@ -1,5 +1,5 @@
 {
-  "seedVersion": 5,
+  "seedVersion": 6,
   "retired": [],
   "decks": [
     {
@@ -1496,10 +1496,10 @@
       "cards": [
         {
           "id": "everyday-idioms-001",
-          "ver": 1,
-          "front": "How was the movie? It was so-so.",
-          "back": "電影怎麼樣？馬馬虎虎啦。",
-          "pinyin": "diànyǐng zěnmeyàng? mǎmǎhǔhǔ la."
+          "ver": 2,
+          "front": "My cooking is just so-so.",
+          "back": "我的廚藝馬馬虎虎啦。",
+          "pinyin": "wǒ de chúyì mǎmǎhǔhǔ la."
         },
         {
           "id": "everyday-idioms-002",
@@ -1510,10 +1510,10 @@
         },
         {
           "id": "everyday-idioms-003",
-          "ver": 1,
-          "front": "Where do you want to eat? Anywhere's fine.",
-          "back": "你想吃什麼？隨便都可以。",
-          "pinyin": "nǐ xiǎng chī shénme? suíbiàn dōu kěyǐ."
+          "ver": 2,
+          "front": "Anywhere's fine with me.",
+          "back": "我隨便都可以。",
+          "pinyin": "wǒ suíbiàn dōu kěyǐ."
         },
         {
           "id": "everyday-idioms-004",
@@ -1524,17 +1524,17 @@
         },
         {
           "id": "everyday-idioms-005",
-          "ver": 1,
-          "front": "Are you almost done? More or less.",
-          "back": "你快好了嗎？差不多了。",
-          "pinyin": "nǐ kuài hǎo le ma? chàbùduō le."
+          "ver": 2,
+          "front": "That's pretty much it, more or less.",
+          "back": "差不多就這樣了。",
+          "pinyin": "chàbùduō jiù zhèyàng le."
         },
         {
           "id": "everyday-idioms-006",
-          "ver": 1,
-          "front": "Are you tired? It's not too bad.",
-          "back": "你會累嗎？還好啦。",
-          "pinyin": "nǐ huì lèi ma? háihǎo la."
+          "ver": 2,
+          "front": "It's not too bad, actually.",
+          "back": "還好啦，沒那麼糟。",
+          "pinyin": "háihǎo la, méi nàme zāo."
         },
         {
           "id": "everyday-idioms-007",
@@ -1566,10 +1566,10 @@
         },
         {
           "id": "everyday-idioms-011",
-          "ver": 1,
-          "front": "Will you come this weekend? It depends.",
-          "back": "你這週末會來嗎？看情況。",
-          "pinyin": "nǐ zhè zhōumò huì lái ma? kàn qíngkuàng."
+          "ver": 2,
+          "front": "It depends on the situation.",
+          "back": "那要看情況。",
+          "pinyin": "nà yào kàn qíngkuàng."
         },
         {
           "id": "everyday-idioms-012",
@@ -1580,24 +1580,24 @@
         },
         {
           "id": "everyday-idioms-013",
-          "ver": 1,
-          "front": "Can you finish it by tomorrow? No problem.",
-          "back": "你明天前能做完嗎？沒問題。",
-          "pinyin": "nǐ míngtiān qián néng zuòwán ma? méi wèntí."
+          "ver": 2,
+          "front": "No problem, leave it to me.",
+          "back": "沒問題，交給我。",
+          "pinyin": "méi wèntí, jiāo gěi wǒ."
         },
         {
           "id": "everyday-idioms-014",
-          "ver": 1,
-          "front": "He quit his job? Seriously?",
-          "back": "他辭職了？真的假的？",
-          "pinyin": "tā cízhí le? zhēn de jiǎ de?"
+          "ver": 2,
+          "front": "Seriously?! You've got to be kidding me.",
+          "back": "真的假的？你不是在開玩笑吧？",
+          "pinyin": "zhēn de jiǎ de? nǐ búshì zài kāiwánxiào ba?"
         },
         {
           "id": "everyday-idioms-015",
-          "ver": 1,
-          "front": "Is it always this crowded? Not necessarily.",
-          "back": "這裡都這麼擠嗎？不一定。",
-          "pinyin": "zhèlǐ dōu zhème jǐ ma? bù yídìng."
+          "ver": 2,
+          "front": "Not necessarily—it's hard to say.",
+          "back": "不一定，很難說。",
+          "pinyin": "bù yídìng, hěn nán shuō."
         },
         {
           "id": "everyday-idioms-016",
