@@ -1,5 +1,5 @@
 {
-  "seedVersion": 6,
+  "seedVersion": 7,
   "retired": [],
   "decks": [
     {
@@ -141,10 +141,10 @@
         },
         {
           "id": "taipei-020",
-          "ver": 2,
+          "ver": 3,
           "front": "Could I have a plastic bag?",
           "back": "可以給我一個塑膠袋嗎？",
-          "pinyin": "kěyǐ gěi wǒ yīge sùjiāodài ma?"
+          "pinyin": "kěyǐ gěi wǒ yí ge sùjiāodài ma?"
         },
         {
           "id": "taipei-021",
@@ -155,17 +155,17 @@
         },
         {
           "id": "taipei-022",
-          "ver": 2,
+          "ver": 3,
           "front": "I'd like a large hot Americano.",
-          "back": "我要一杯大杯熱美式。",
-          "pinyin": "wǒ yào yī bēi dà bēi rè měishì."
+          "back": "我要一杯熱美式，大杯。",
+          "pinyin": "wǒ yào yì bēi rè měishì, dà bēi."
         },
         {
           "id": "taipei-023",
-          "ver": 2,
+          "ver": 3,
           "front": "One beef noodle soup, please.",
           "back": "我要一碗牛肉麵。",
-          "pinyin": "wǒ yào yī wǎn niúròumiàn."
+          "pinyin": "wǒ yào yì wǎn niúròumiàn."
         },
         {
           "id": "taipei-024",
@@ -197,24 +197,24 @@
         },
         {
           "id": "taipei-028",
-          "ver": 2,
+          "ver": 3,
           "front": "Can I have extra chili sauce?",
           "back": "可以多給我一點辣椒醬嗎？",
-          "pinyin": "kěyǐ duō gěi wǒ yīdiǎn làjiāojiàng ma?"
+          "pinyin": "kěyǐ duō gěi wǒ yìdiǎn làjiāojiàng ma?"
         },
         {
           "id": "taipei-029",
-          "ver": 2,
+          "ver": 3,
           "front": "The bill, please.",
-          "back": "我要買單。",
-          "pinyin": "wǒ yào mǎidān."
+          "back": "麻煩結帳。",
+          "pinyin": "máfan jiézhàng."
         },
         {
           "id": "taipei-030",
-          "ver": 2,
+          "ver": 3,
           "front": "Do you take EasyCard here?",
-          "back": "你們可以用悠遊卡嗎？",
-          "pinyin": "nǐmen kěyǐ yòng yōuyóukǎ ma?"
+          "back": "這裡可以用悠遊卡嗎？",
+          "pinyin": "zhèlǐ kěyǐ yòng yōuyóukǎ ma?"
         },
         {
           "id": "taipei-031",
@@ -225,10 +225,10 @@
         },
         {
           "id": "taipei-032",
-          "ver": 2,
+          "ver": 3,
           "front": "One bubble tea, half sugar, less ice.",
           "back": "一杯珍珠奶茶，半糖少冰。",
-          "pinyin": "yī bēi zhēnzhū nǎichá, bàn táng shǎo bīng."
+          "pinyin": "yì bēi zhēnzhū nǎichá, bàn táng shǎo bīng."
         },
         {
           "id": "taipei-033",
@@ -239,10 +239,10 @@
         },
         {
           "id": "taipei-034",
-          "ver": 2,
+          "ver": 3,
           "front": "This is delicious!",
           "back": "這個好好吃！",
-          "pinyin": "zhège hǎo hàochī!"
+          "pinyin": "zhège hǎo hǎochī!"
         },
         {
           "id": "taipei-035",
@@ -267,24 +267,24 @@
         },
         {
           "id": "taipei-038",
-          "ver": 2,
+          "ver": 3,
           "front": "Please don't add cilantro.",
           "back": "請不要加香菜。",
-          "pinyin": "qǐng bùyào jiā xiāngcài."
+          "pinyin": "qǐng búyào jiā xiāngcài."
         },
         {
           "id": "taipei-039",
-          "ver": 2,
+          "ver": 3,
           "front": "What do you recommend?",
-          "back": "你推薦什麼？",
-          "pinyin": "nǐ tuījiàn shénme?"
+          "back": "你有什麼推薦的嗎？",
+          "pinyin": "nǐ yǒu shénme tuījiàn de ma?"
         },
         {
           "id": "taipei-040",
-          "ver": 2,
+          "ver": 3,
           "front": "Can I have steamed dumplings instead of fried?",
           "back": "我要蒸餃，不要煎餃，可以嗎？",
-          "pinyin": "wǒ yào zhēngjiǎo, bùyào jiānjiǎo, kěyǐ ma?"
+          "pinyin": "wǒ yào zhēngjiǎo, búyào jiānjiǎo, kěyǐ ma?"
         },
         {
           "id": "taipei-041",
@@ -323,10 +323,10 @@
         },
         {
           "id": "taipei-046",
-          "ver": 2,
+          "ver": 3,
           "front": "One mango shaved ice to share.",
-          "back": "一份芒果冰一起吃。",
-          "pinyin": "yī fèn mángguǒ bīng yīqǐ chī."
+          "back": "一份芒果冰，我們一起吃。",
+          "pinyin": "yí fèn mángguǒ bīng, wǒmen yìqǐ chī."
         },
         {
           "id": "taipei-047",
@@ -365,10 +365,10 @@
         },
         {
           "id": "taipei-052",
-          "ver": 2,
+          "ver": 3,
           "front": "Will there be a typhoon day off?",
-          "back": "颱風天會放假嗎？",
-          "pinyin": "táifēng tiān huì fàngjià ma?"
+          "back": "會放颱風假嗎？",
+          "pinyin": "huì fàng táifēng jià ma?"
         },
         {
           "id": "taipei-053",
@@ -393,10 +393,10 @@
         },
         {
           "id": "taipei-056",
-          "ver": 2,
+          "ver": 3,
           "front": "The forecast says it'll clear up tomorrow.",
-          "back": "氣象說明天會放晴。",
-          "pinyin": "qìxiàng shuō míngtiān huì fàngqíng."
+          "back": "氣象預報說明天會放晴。",
+          "pinyin": "qìxiàng yùbào shuō míngtiān huì fàngqíng."
         },
         {
           "id": "taipei-057",
@@ -407,10 +407,10 @@
         },
         {
           "id": "taipei-058",
-          "ver": 2,
+          "ver": 3,
           "front": "How much is the monthly rent?",
           "back": "一個月租金多少？",
-          "pinyin": "yī ge yuè zūjīn duōshǎo?"
+          "pinyin": "yí ge yuè zūjīn duōshǎo?"
         },
         {
           "id": "taipei-059",
@@ -428,10 +428,10 @@
         },
         {
           "id": "taipei-061",
-          "ver": 2,
+          "ver": 3,
           "front": "Which bag is for recycling?",
           "back": "哪一袋是回收的？",
-          "pinyin": "nǎ yī dài shì huíshōu de?"
+          "pinyin": "nǎ yí dài shì huíshōu de?"
         },
         {
           "id": "taipei-062",
@@ -561,10 +561,10 @@
         },
         {
           "id": "taipei-080",
-          "ver": 2,
+          "ver": 3,
           "front": "Can you give me a better price?",
           "back": "可以算便宜一點嗎？",
-          "pinyin": "kěyǐ suàn piányí yīdiǎn ma?"
+          "pinyin": "kěyǐ suàn piányí yìdiǎn ma?"
         },
         {
           "id": "taipei-081",
@@ -589,10 +589,10 @@
         },
         {
           "id": "taipei-084",
-          "ver": 2,
+          "ver": 3,
           "front": "Do you have this in a smaller size?",
           "back": "這個有小一點的尺寸嗎？",
-          "pinyin": "zhège yǒu xiǎo yīdiǎn de chǐcùn ma?"
+          "pinyin": "zhège yǒu xiǎo yìdiǎn de chǐcùn ma?"
         },
         {
           "id": "taipei-085",
@@ -617,10 +617,10 @@
         },
         {
           "id": "taipei-088",
-          "ver": 2,
+          "ver": 3,
           "front": "I need to buy a new umbrella.",
           "back": "我需要買一把新雨傘。",
-          "pinyin": "wǒ xūyào mǎi yī bǎ xīn yǔsǎn."
+          "pinyin": "wǒ xūyào mǎi yì bǎ xīn yǔsǎn."
         },
         {
           "id": "taipei-089",
@@ -645,10 +645,10 @@
         },
         {
           "id": "taipei-092",
-          "ver": 2,
+          "ver": 3,
           "front": "Is it within walking distance?",
-          "back": "走路到得了嗎？",
-          "pinyin": "zǒulù dào de liǎo ma?"
+          "back": "走路可以到嗎？",
+          "pinyin": "zǒulù kěyǐ dào ma?"
         },
         {
           "id": "taipei-093",
@@ -659,10 +659,10 @@
         },
         {
           "id": "taipei-094",
-          "ver": 2,
+          "ver": 3,
           "front": "Turn left at the next intersection.",
           "back": "在下一個路口左轉。",
-          "pinyin": "zài xià yī ge lùkǒu zuǒzhuǎn."
+          "pinyin": "zài xià yí ge lùkǒu zuǒzhuǎn."
         },
         {
           "id": "taipei-095",
@@ -680,24 +680,24 @@
         },
         {
           "id": "taipei-097",
-          "ver": 2,
+          "ver": 3,
           "front": "Could you speak a little slower, please?",
           "back": "可以講慢一點嗎？",
-          "pinyin": "kěyǐ jiǎng màn yīdiǎn ma?"
+          "pinyin": "kěyǐ jiǎng màn yìdiǎn ma?"
         },
         {
           "id": "taipei-098",
-          "ver": 2,
+          "ver": 3,
           "front": "I don't understand, could you say that again?",
           "back": "我聽不懂，可以再說一次嗎？",
-          "pinyin": "wǒ tīng bù dǒng, kěyǐ zài shuō yī cì ma?"
+          "pinyin": "wǒ tīng bù dǒng, kěyǐ zài shuō yí cì ma?"
         },
         {
           "id": "taipei-099",
-          "ver": 2,
+          "ver": 3,
           "front": "Sorry, I only speak a little Chinese.",
           "back": "不好意思，我只會說一點中文。",
-          "pinyin": "bùhǎoyìsi, wǒ zhǐ huì shuō yīdiǎn Zhōngwén."
+          "pinyin": "bùhǎoyìsi, wǒ zhǐ huì shuō yìdiǎn Zhōngwén."
         },
         {
           "id": "taipei-100",
@@ -749,10 +749,10 @@
         },
         {
           "id": "interactions-006",
-          "ver": 2,
+          "ver": 3,
           "front": "I'll be home a little late tonight.",
           "back": "我今天晚上會晚一點回家。",
-          "pinyin": "wǒ jīntiān wǎnshàng huì wǎn yīdiǎn huíjiā."
+          "pinyin": "wǒ jīntiān wǎnshàng huì wǎn yìdiǎn huíjiā."
         },
         {
           "id": "interactions-007",
@@ -798,10 +798,10 @@
         },
         {
           "id": "interactions-013",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's have dinner together this Sunday.",
           "back": "這個禮拜天我們一起吃晚餐吧。",
-          "pinyin": "zhège lǐbàitiān wǒmen yīqǐ chī wǎncān ba."
+          "pinyin": "zhège lǐbàitiān wǒmen yìqǐ chī wǎncān ba."
         },
         {
           "id": "interactions-014",
@@ -840,10 +840,10 @@
         },
         {
           "id": "interactions-019",
-          "ver": 2,
+          "ver": 3,
           "front": "Help your little brother with his homework.",
           "back": "幫弟弟看一下功課。",
-          "pinyin": "bāng dìdi kàn yīxià gōngkè."
+          "pinyin": "bāng dìdi kàn yíxià gōngkè."
         },
         {
           "id": "interactions-020",
@@ -875,10 +875,10 @@
         },
         {
           "id": "interactions-024",
-          "ver": 2,
+          "ver": 3,
           "front": "Are you feeling better today?",
           "back": "你今天有好一點嗎？",
-          "pinyin": "nǐ jīntiān yǒu hǎo yīdiǎn ma?"
+          "pinyin": "nǐ jīntiān yǒu hǎo yìdiǎn ma?"
         },
         {
           "id": "interactions-025",
@@ -903,10 +903,10 @@
         },
         {
           "id": "interactions-028",
-          "ver": 2,
+          "ver": 3,
           "front": "Let me know when you get home safe.",
           "back": "到家了跟我說一聲。",
-          "pinyin": "dào jiā le gēn wǒ shuō yī shēng."
+          "pinyin": "dào jiā le gēn wǒ shuō yì shēng."
         },
         {
           "id": "interactions-029",
@@ -924,45 +924,45 @@
         },
         {
           "id": "interactions-031",
-          "ver": 2,
+          "ver": 3,
           "front": "Don't worry, everything will be fine.",
           "back": "別擔心，一切都會好的。",
-          "pinyin": "bié dānxīn, yīqiè dōu huì hǎo de."
+          "pinyin": "bié dānxīn, yíqiè dōu huì hǎo de."
         },
         {
           "id": "interactions-032",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's clean the house together this weekend.",
           "back": "這個週末我們一起打掃吧。",
-          "pinyin": "zhège zhōumò wǒmen yīqǐ dǎsǎo ba."
+          "pinyin": "zhège zhōumò wǒmen yìqǐ dǎsǎo ba."
         },
         {
           "id": "interactions-033",
-          "ver": 2,
+          "ver": 3,
           "front": "Can you turn down the TV a bit?",
           "back": "電視可以小聲一點嗎？",
-          "pinyin": "diànshì kěyǐ xiǎoshēng yīdiǎn ma?"
+          "pinyin": "diànshì kěyǐ xiǎoshēng yìdiǎn ma?"
         },
         {
           "id": "interactions-034",
-          "ver": 2,
+          "ver": 3,
           "front": "Thanks for cooking, it was delicious.",
           "back": "謝謝你煮飯，很好吃。",
-          "pinyin": "xièxie nǐ zhǔfàn, hěn hàochī."
+          "pinyin": "xièxie nǐ zhǔfàn, hěn hǎochī."
         },
         {
           "id": "interactions-035",
-          "ver": 2,
+          "ver": 3,
           "front": "Long time no see, how have you been?",
           "back": "好久不見，你最近好嗎？",
-          "pinyin": "hǎojiǔ bùjiàn, nǐ zuìjìn hǎo ma?"
+          "pinyin": "hǎojiǔ bújiàn, nǐ zuìjìn hǎo ma?"
         },
         {
           "id": "interactions-036",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's grab a meal sometime.",
           "back": "我們找時間一起吃個飯。",
-          "pinyin": "wǒmen zhǎo shíjiān yīqǐ chī ge fàn."
+          "pinyin": "wǒmen zhǎo shíjiān yìqǐ chī ge fàn."
         },
         {
           "id": "interactions-037",
@@ -980,24 +980,24 @@
         },
         {
           "id": "interactions-039",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's split it next time.",
-          "back": "下次我們 AA 吧。",
-          "pinyin": "xià cì wǒmen AA ba."
+          "back": "下次我們各付各的吧。",
+          "pinyin": "xià cì wǒmen gè fù gè de ba."
         },
         {
           "id": "interactions-040",
-          "ver": 2,
+          "ver": 3,
           "front": "Do you want to come over?",
           "back": "你要不要過來坐坐？",
-          "pinyin": "nǐ yào bùyào guòlái zuòzuo?"
+          "pinyin": "nǐ yào búyào guòlái zuòzuo?"
         },
         {
           "id": "interactions-041",
-          "ver": 2,
+          "ver": 3,
           "front": "I'm running a bit late, sorry.",
           "back": "我會晚一點到，抱歉。",
-          "pinyin": "wǒ huì wǎn yīdiǎn dào, bàoqiàn."
+          "pinyin": "wǒ huì wǎn yìdiǎn dào, bàoqiàn."
         },
         {
           "id": "interactions-042",
@@ -1015,10 +1015,10 @@
         },
         {
           "id": "interactions-044",
-          "ver": 2,
+          "ver": 3,
           "front": "That sounds like a great idea.",
           "back": "這個主意聽起來不錯。",
-          "pinyin": "zhège zhǔyì tīng qǐlái bùcuò."
+          "pinyin": "zhège zhǔyì tīng qǐlái búcuò."
         },
         {
           "id": "interactions-045",
@@ -1036,10 +1036,10 @@
         },
         {
           "id": "interactions-047",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's take a photo together.",
           "back": "我們一起拍張照吧。",
-          "pinyin": "wǒmen yīqǐ pāi zhāng zhào ba."
+          "pinyin": "wǒmen yìqǐ pāi zhāng zhào ba."
         },
         {
           "id": "interactions-048",
@@ -1078,10 +1078,10 @@
         },
         {
           "id": "interactions-053",
-          "ver": 2,
+          "ver": 3,
           "front": "I owe you one.",
           "back": "我欠你一個人情。",
-          "pinyin": "wǒ qiàn nǐ yī ge rénqíng."
+          "pinyin": "wǒ qiàn nǐ yí ge rénqíng."
         },
         {
           "id": "interactions-054",
@@ -1106,17 +1106,17 @@
         },
         {
           "id": "interactions-057",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's plan a trip together.",
           "back": "我們一起計畫一趟旅行吧。",
-          "pinyin": "wǒmen yīqǐ jìhuà yī tàng lǚxíng ba."
+          "pinyin": "wǒmen yìqǐ jìhuà yí tàng lǚxíng ba."
         },
         {
           "id": "interactions-058",
-          "ver": 2,
+          "ver": 3,
           "front": "I totally agree with you.",
-          "back": "我完全同意你。",
-          "pinyin": "wǒ wánquán tóngyì nǐ."
+          "back": "我完全同意你的看法。",
+          "pinyin": "wǒ wánquán tóngyì nǐ de kànfǎ."
         },
         {
           "id": "interactions-059",
@@ -1134,10 +1134,10 @@
         },
         {
           "id": "interactions-061",
-          "ver": 2,
+          "ver": 3,
           "front": "Thanks for always being there for me.",
           "back": "謝謝你一直陪在我身邊。",
-          "pinyin": "xièxie nǐ yīzhí péi zài wǒ shēnbiān."
+          "pinyin": "xièxie nǐ yìzhí péi zài wǒ shēnbiān."
         },
         {
           "id": "interactions-062",
@@ -1155,10 +1155,10 @@
         },
         {
           "id": "interactions-064",
-          "ver": 2,
+          "ver": 3,
           "front": "Want to order a dish to share?",
           "back": "要不要點一道菜一起分？",
-          "pinyin": "yào bùyào diǎn yī dào cài yīqǐ fēn?"
+          "pinyin": "yào búyào diǎn yí dào cài yìqǐ fēn?"
         },
         {
           "id": "interactions-065",
@@ -1169,10 +1169,10 @@
         },
         {
           "id": "interactions-066",
-          "ver": 2,
+          "ver": 3,
           "front": "Can you recommend a good restaurant?",
           "back": "你可以推薦一間好吃的餐廳嗎？",
-          "pinyin": "nǐ kěyǐ tuījiàn yī jiān hàochī de cāntīng ma?"
+          "pinyin": "nǐ kěyǐ tuījiàn yì jiān hǎochī de cāntīng ma?"
         },
         {
           "id": "interactions-067",
@@ -1197,10 +1197,10 @@
         },
         {
           "id": "interactions-070",
-          "ver": 2,
+          "ver": 3,
           "front": "Can we talk for a minute?",
           "back": "我們可以聊一下嗎？",
-          "pinyin": "wǒmen kěyǐ liáo yīxià ma?"
+          "pinyin": "wǒmen kěyǐ liáo yíxià ma?"
         },
         {
           "id": "interactions-071",
@@ -1225,10 +1225,10 @@
         },
         {
           "id": "interactions-074",
-          "ver": 2,
+          "ver": 3,
           "front": "Could you double-check this for me?",
           "back": "可以幫我再確認一次嗎？",
-          "pinyin": "kěyǐ bāng wǒ zài quèrèn yī cì ma?"
+          "pinyin": "kěyǐ bāng wǒ zài quèrèn yí cì ma?"
         },
         {
           "id": "interactions-075",
@@ -1239,10 +1239,10 @@
         },
         {
           "id": "interactions-076",
-          "ver": 2,
+          "ver": 3,
           "front": "I'll be out of the office tomorrow.",
           "back": "我明天不在辦公室。",
-          "pinyin": "wǒ míngtiān bù zài bàngōngshì."
+          "pinyin": "wǒ míngtiān bú zài bàngōngshì."
         },
         {
           "id": "interactions-077",
@@ -1267,10 +1267,10 @@
         },
         {
           "id": "interactions-080",
-          "ver": 2,
+          "ver": 3,
           "front": "I'll follow up with the client.",
-          "back": "我會跟客戶後續聯絡。",
-          "pinyin": "wǒ huì gēn kèhù hòuxù liánluò."
+          "back": "我會再跟客戶聯絡。",
+          "pinyin": "wǒ huì zài gēn kèhù liánluò."
         },
         {
           "id": "interactions-081",
@@ -1295,10 +1295,10 @@
         },
         {
           "id": "interactions-084",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's grab lunch together.",
           "back": "我們一起去吃午餐吧。",
-          "pinyin": "wǒmen yīqǐ qù chī wǔcān ba."
+          "pinyin": "wǒmen yìqǐ qù chī wǔcān ba."
         },
         {
           "id": "interactions-085",
@@ -1323,10 +1323,10 @@
         },
         {
           "id": "interactions-088",
-          "ver": 2,
+          "ver": 3,
           "front": "Could you explain that again?",
           "back": "可以再解釋一次嗎？",
-          "pinyin": "kěyǐ zài jiěshì yī cì ma?"
+          "pinyin": "kěyǐ zài jiěshì yí cì ma?"
         },
         {
           "id": "interactions-089",
@@ -1337,17 +1337,17 @@
         },
         {
           "id": "interactions-090",
-          "ver": 2,
+          "ver": 3,
           "front": "I think we should ask the manager.",
           "back": "我覺得我們應該問一下經理。",
-          "pinyin": "wǒ juéde wǒmen yīnggāi wèn yīxià jīnglǐ."
+          "pinyin": "wǒ juéde wǒmen yīnggāi wèn yíxià jīnglǐ."
         },
         {
           "id": "interactions-091",
-          "ver": 2,
+          "ver": 3,
           "front": "Can we push the meeting back an hour?",
           "back": "會議可以往後延一個小時嗎？",
-          "pinyin": "huìyì kěyǐ wǎng hòu yán yī ge xiǎoshí ma?"
+          "pinyin": "huìyì kěyǐ wǎng hòu yán yí ge xiǎoshí ma?"
         },
         {
           "id": "interactions-092",
@@ -1386,17 +1386,17 @@
         },
         {
           "id": "interactions-097",
-          "ver": 2,
+          "ver": 3,
           "front": "I'm not sure, let me check and get back to you.",
           "back": "我不太確定，我查一下再回覆你。",
-          "pinyin": "wǒ bù tài quèdìng, wǒ chá yīxià zài huífù nǐ."
+          "pinyin": "wǒ bú tài quèdìng, wǒ chá yíxià zài huífù nǐ."
         },
         {
           "id": "interactions-098",
-          "ver": 2,
+          "ver": 3,
           "front": "Let's take a short break.",
           "back": "我們休息一下吧。",
-          "pinyin": "wǒmen xiūxí yīxià ba."
+          "pinyin": "wǒmen xiūxí yíxià ba."
         },
         {
           "id": "interactions-099",
@@ -1538,10 +1538,10 @@
         },
         {
           "id": "everyday-idioms-007",
-          "ver": 1,
-          "front": "Sorry I'm late. It's fine, no worries.",
-          "back": "抱歉我遲到了。沒關係，不要緊。",
-          "pinyin": "bàoqiàn wǒ chídào le. méi guānxi, bú yàojǐn."
+          "ver": 2,
+          "front": "A: Sorry I'm late. B: It's fine, no worries.",
+          "back": "A：抱歉我遲到了。B：沒關係，不要緊。",
+          "pinyin": "A: bàoqiàn wǒ chídào le. B: méi guānxi, bú yàojǐn."
         },
         {
           "id": "everyday-idioms-008",
@@ -1670,10 +1670,10 @@
         },
         {
           "id": "reacting-007",
-          "ver": 1,
+          "ver": 2,
           "front": "They cancelled the train with no notice—that's outrageous.",
-          "back": "他們沒通知就取消火車，超扯的。",
-          "pinyin": "tāmen méi tōngzhī jiù qǔxiāo huǒchē, chāo chě de."
+          "back": "他們沒通知就把火車班次取消了，超扯的。",
+          "pinyin": "tāmen méi tōngzhī jiù bǎ huǒchē bāncì qǔxiāo le, chāo chě de."
         },
         {
           "id": "reacting-008",
@@ -1740,17 +1740,17 @@
         },
         {
           "id": "reacting-017",
-          "ver": 1,
+          "ver": 2,
           "front": "That horror movie was terrifying, my heart is still pounding.",
-          "back": "那部恐怖片好可怕，我心臟還在跳。",
-          "pinyin": "nà bù kǒngbùpiàn hǎo kěpà, wǒ xīnzàng hái zài tiào."
+          "back": "那部恐怖片好可怕，我的心還在怦怦跳。",
+          "pinyin": "nà bù kǒngbùpiàn hǎo kěpà, wǒ de xīn hái zài pēngpēng tiào."
         },
         {
           "id": "reacting-018",
-          "ver": 1,
+          "ver": 2,
           "front": "Hearing that good news made my whole day.",
           "back": "聽到這個好消息，我一整天心情都很好。",
-          "pinyin": "tīngdào zhège hǎo xiāoxi, wǒ yì zhěng tiān xīnqíng dōu hěn hǎo."
+          "pinyin": "tīngdào zhège hǎo xiāoxí, wǒ yì zhěng tiān xīnqíng dōu hěn hǎo."
         }
       ]
     }
